@@ -304,13 +304,13 @@ return [
             'icon' => 'fas fa-fw fa-hospital ',
             'role' => 'admin'
         ],
-        // [
-        //     'text' => 'Lotes',
-        //     'url'  => 'lotes/todos',
-        //     'icon' => 'fas fa-fw fa-lock',
-        //     'role'        => 'admin'
+        [
+            'text' => 'Archivos',
+            'url'  => 'archivos/lista',
+            'icon' => 'fas fa-fw fa-lock',
+            'role'        => 'admin'
 
-        // ],
+        ],
         // [
         //     'text' => 'Nombres precios',
         //     'url'  => 'nombres/lista',

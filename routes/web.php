@@ -37,6 +37,18 @@ Route::get('proveedor/update/{user_id}', [App\Http\Controllers\ProveedoresContro
 Route::post('proveedor/update/{user_id}', [App\Http\Controllers\ProveedoresController::class, 'updateProveedor'])->name('proveedor.update');
 Route::get('proveedor/list', [App\Http\Controllers\ProveedoresController::class, 'getProveedor'])->name('proveedor.lista');
 
+//Rutas cargue multiple (Dropzone)
+Route::get('archivos/cargue', [App\Http\Controllers\fileController::class, 'cargue']); //->name('proveedor.create.vista')
+
+Route::get('archivos/create', [App\Http\Controllers\fileController::class, 'create'])->name('files.create.vista');
+Route::post('archivos/dropzone', [App\Http\Controllers\fileController::class, 'dropzone'])->name('Files.create');
+
+Route::get('archivos/eliminar/{id}', [App\Http\Controllers\fileController::class, 'delete'])->name('files.eliminar');
+Route::get('archivos/lista', [App\Http\Controllers\fileController::class, 'getFiles'])->name('files.lista');
+Route::get('archivos/update/{user_id}', [App\Http\Controllers\fileController::class, 'update'])->name('files.update.vista');
+Route::post('archivos/update/{user_id}', [App\Http\Controllers\fileController::class, 'updateFiles'])->name('files.update');
+
+
 //Lotes
 Route::get('lotes/create/{producto_id}', [App\Http\Controllers\LotesController::class, 'create'])->name('lotes.create.vista');
 Route::post('lotes/create/{producto_id}', [App\Http\Controllers\LotesController::class, 'createLotes'])->name('lotes.create');
