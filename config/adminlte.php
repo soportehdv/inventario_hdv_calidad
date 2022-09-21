@@ -250,12 +250,50 @@ return [
             'role'        => 'admin'
         ],
         [
-            'text' => 'Ingresar producto',
-            'url'  => 'compras/lista',
+            'text' => 'Listado maestro',
+            'url'  => 'documentos/lista',
             'icon' => 'fas fa-fw fa-share',
             'role'        => 'admin'
 
         ],
+        [
+            'text'    => 'Codigos',
+            'icon'    => 'fas fa-fw fa-chalkboard-teacher',
+            'role'        => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'Tipo de documentos',
+                    'url'  => 'TipoDoc/lista',
+                    'role'        => 'admin',
+
+                ],
+                [
+                    'text' => 'Procesos estrategicos',
+                    'url'  => 'ubicacion/lista',
+                    'role'        => 'admin',
+
+                ],
+                [
+                    'text' => 'Procesos misionales',
+                    'url'  => 'ubicacion/lista',
+                    'role'        => 'admin',
+
+                ],
+                [
+                    'text' => 'Procesos de apoyo',
+                    'url'  => 'ubicacion/lista',
+                    'role'        => 'admin',
+
+                ],
+                [
+                    'text' => 'Procesos de evaluación y control',
+                    'url'  => 'ubicacion/lista',
+                    'role'        => 'admin',
+
+                ],
+            ],
+        ],
+
         // [
         //     'text' => 'Devolución de productos',
         //     'url'  => 'devolucion/list',
@@ -263,13 +301,13 @@ return [
         //     'role'        => 'admin'
 
         // ],
-        [
-            'text' => 'Pedidos',
-            'url'  => 'clientes/list',
-            'icon' => 'fas fa-fw fa-chalkboard-teacher',
-            'role'        => 'servicios'
+        // [
+        //     'text' => 'Pedidos',
+        //     'url'  => 'clientes/list',
+        //     'icon' => 'fas fa-fw fa-chalkboard-teacher',
+        //     'role'        => 'servicios'
 
-        ],
+        // ],
         // [
         //     'text' => 'Proveedores',
         //     'url'  => 'proveedor/list',
@@ -277,13 +315,13 @@ return [
         //     'role'        => 'admin'
 
         // ],
-        [
-            'text' => 'Ubicaciones',
-            'url'  => 'ubicacion/lista',
-            'icon' => 'fas fa-fw fa-map-marker-alt',
-            'role'        => 'admin'
+        // [
+        //     'text' => 'Ubicaciones',
+        //     'url'  => 'ubicacion/lista',
+        //     'icon' => 'fas fa-fw fa-map-marker-alt',
+        //     'role'        => 'admin'
 
-        ],
+        // ],
         // [
         //     'text'    => 'Stock',
         //     'url'     => 'stock/list',
@@ -292,25 +330,25 @@ return [
 
         // ],
 
-        [
-            'text' => 'Entrega',
-            'url'  => 'ventas/todas',
-            'icon' => 'fas fa-fw fa-dolly',
-            'role' => 'admin'
-        ],
-        [
-            'text' => 'historial de lavado',
-            'url'  => 'lavado/todas',
-            'icon' => 'fas fa-fw fa-hospital ',
-            'role' => 'admin'
-        ],
-        [
-            'text' => 'Archivos',
-            'url'  => 'archivos/lista',
-            'icon' => 'fas fa-fw fa-lock',
-            'role'        => 'admin'
+        // [
+        //     'text' => 'Entrega',
+        //     'url'  => 'ventas/todas',
+        //     'icon' => 'fas fa-fw fa-dolly',
+        //     'role' => 'admin'
+        // ],
+        // [
+        //     'text' => 'historial de lavado',
+        //     'url'  => 'lavado/todas',
+        //     'icon' => 'fas fa-fw fa-hospital ',
+        //     'role' => 'admin'
+        // ],
+        // [
+        //     'text' => 'Archivos',
+        //     'url'  => 'archivos/lista',
+        //     'icon' => 'fas fa-fw fa-lock',
+        //     'role'        => 'admin'
 
-        ],
+        // ],
         // [
         //     'text' => 'Nombres precios',
         //     'url'  => 'nombres/lista',

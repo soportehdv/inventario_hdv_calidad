@@ -9,6 +9,8 @@ class Responsables extends Model
 {
     use HasFactory;
 
+    protected $table = "responsables";
+
     protected $fillable = [
         'proceso',
         'responsable',

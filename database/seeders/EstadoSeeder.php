@@ -15,17 +15,15 @@ class EstadoSeeder extends Seeder
     public function run()
     {
         DB::table('estados')->insert([
-            'estado' => 'Lleno'
+            'estado' => 'VIGENTE'
         ]);
 
         DB::table('estados')->insert([
-            'estado' => 'Vacio'
+            'estado' => 'OBSOLETO'
         ]);
-
         DB::table('estados')->insert([
-            'estado' => 'En servicio'
+            'estado' => 'ESCANEADO'
         ]);
-
 
     }
 }

@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class SiglasDocumentos extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $table = "siglas_documentos";
 
     protected $fillable = [
-        'nombre',
+        'documento',
+        'sigla',
     ];
-
-    public function subcategorias(){
-        return $this->hasMany("App\Subcategorias");
-    }
 }

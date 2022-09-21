@@ -18,7 +18,7 @@
 
     <div class="container">
 
-        <div class="flexbox-container">
+        {{-- <div class="flexbox-container">
             <div class="small-box bg-red" style="margin-right: 10px;">
                 <div class="inner">
 
@@ -72,12 +72,9 @@
                         $k = 0;
                     @endphp
                     @foreach ($ventas as $venta)
-                        {{-- @if ($stoc->estado_id === 3) --}}
                         @php
-                            // $i= $loop->count
                             $k = $k + $venta->unidades;
                         @endphp
-                        {{-- @endif --}}
                     @endforeach
                     <h3>{{ $k }}</h3>
                     <p>Productos en servicio</p>
@@ -102,7 +99,7 @@
                 width: 33.3%;
                 padding: 10px;
             }
-        </style>
+        </style> --}}
 
     </div>
 
