@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Productos')
+@section('title', 'Modificar documentos')
 
 @section('content_header')
     <div class="card">

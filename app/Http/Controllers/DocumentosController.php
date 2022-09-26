@@ -112,7 +112,7 @@ class DocumentosController extends Controller
         $Documentos->save();
 
 
-        $request->session()->flash('alert-success', 'Producto registrado con exito!');
+        $request->session()->flash('alert-success', 'Documento registrado con exito!');
 
         return redirect()->route('documentos.lista');
     }
@@ -180,7 +180,7 @@ class DocumentosController extends Controller
 
         $documentos->save();
 
-        $request->session()->flash('alert-success', 'Ingreso actualizado con exito!');
+        $request->session()->flash('alert-success', 'Documento actualizado con exito!');
 
         return redirect()->route('documentos.lista');
     }

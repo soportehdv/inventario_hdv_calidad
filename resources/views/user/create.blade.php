@@ -1,10 +1,10 @@
 @extends('adminlte::page')
-@section('title', 'Usuarios')
+@section('title', 'Crear Usuarios')
 
 @section('content_header')
     <div class="card" style="height:4em;">
         <div class="card-header">
-            <h2>Usuarios</h2>
+            <h2>Crear Usuarios</h2>
         </div>
 
     </div>

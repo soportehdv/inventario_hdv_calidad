@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Inventario</b>-Lavanderia',
+    'logo' => '<b>Repositorio</b>-Calidad',
     'logo_img' => 'vendor/adminlte/dist/img/logoHDV.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -228,8 +228,8 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'search' => false,
+            'topnav' => false,
         ],
         [
             'text' => 'blog',
@@ -237,12 +237,12 @@ return [
             'can'  => 'manage-blog',
         ],
         ['header' => 'Menú'],
-        [
-            'text'        => 'Inicio',
-            'url'         => 'targets/target',
-            'icon'        => 'fa fa-fw fa-home',
-            'role'        => 'admin'
-        ],
+        // [
+        //     'text'        => 'Inicio',
+        //     'url'         => 'targets/target',
+        //     'icon'        => 'fa fa-fw fa-home',
+        //     'role'        => 'admin'
+        // ],
         [
             'text'        => 'Usuarios',
             'url'         => 'user/list',
@@ -268,26 +268,14 @@ return [
 
                 ],
                 [
-                    'text' => 'Procesos estrategicos',
-                    'url'  => 'ubicacion/lista',
+                    'text' => 'Subprocesos',
+                    'url'  => 'ProcesoE/lista',
                     'role'        => 'admin',
 
                 ],
                 [
-                    'text' => 'Procesos misionales',
-                    'url'  => 'ubicacion/lista',
-                    'role'        => 'admin',
-
-                ],
-                [
-                    'text' => 'Procesos de apoyo',
-                    'url'  => 'ubicacion/lista',
-                    'role'        => 'admin',
-
-                ],
-                [
-                    'text' => 'Procesos de evaluación y control',
-                    'url'  => 'ubicacion/lista',
+                    'text' => 'Procesos',
+                    'url'  => 'Proceso/lista',
                     'role'        => 'admin',
 
                 ],

@@ -1,12 +1,12 @@
 @extends('adminlte::page')
-@section('title', 'Productos')
+@section('title', 'Documentos')
 
 @section('content_header')
+
     <div class="card" style="height:4em;">
         <div class="card-header">
-            <h2>Productos</h2>
+            <h2>Documentos</h2>
         </div>
-
     </div>
 
 @section('cssDataTable')
@@ -26,8 +26,8 @@
         <i class="fas fa-plus-circle"></i> Importar
     </a>
     {{-- modal show --}}
-    <div class="modal fade" id="modal-importar" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modal-importar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -129,31 +129,30 @@
                                 <h6><b>Fecha de aprobación: </b>{{ $documento->fechaAprobacion }}</h6>
                                 <h6><b>Estado de documento: </b>{{ $documento->status }}</h6>
                                 @if ($documento->name != null)
-                                <h5 align="center"><b>Datos del archivo</b></h5>
-                                <h6><b>Nombre documento: </b> {{ $documento->name }}</h6>
-                                <h6><b>Url: </b><a target="_blank"
-                                        href="{{ asset('files/biblioteca/' . $documento->ruta) }}">{{ asset('files/biblioteca/' . $documento->ruta) }}</a>
-                                </h6>
-                                <h6><b>Tamaño: </b> {{ $documento->size }} KB</h6>
-                                <h6><b>Subida: </b> {{ $documento->updated_at }}</h6>
+                                    <h5 align="center"><b>Datos del archivo</b></h5>
+                                    <h6><b>Nombre documento: </b> {{ $documento->name }}</h6>
+                                    <h6><b>Url: </b><a target="_blank"
+                                            href="{{ asset('files/biblioteca/' . $documento->ruta) }}">{{ asset('files/biblioteca/' . $documento->ruta) }}</a>
+                                    </h6>
+                                    <h6><b>Tamaño: </b> {{ $documento->size }} KB</h6>
+                                    <h6><b>Subida: </b> {{ $documento->updated_at }}</h6>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div align="center">
-                                            @if ($documento->mime == 'image')
-                                                <img src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
-                                                    height="200px" width="300px" alt="imagenes">
-                                            @endif
-                                            @if ($documento->extension == 'pdf')
-                                                <embed src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
-                                                    type="application/pdf" width="100%" height="600px" />
-                                            @endif
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div align="center">
+                                                @if ($documento->mime == 'image')
+                                                    <img src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                        height="200px" width="300px" alt="imagenes">
+                                                @endif
+                                                @if ($documento->extension == 'pdf')
+                                                    <embed src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                        type="application/pdf" width="100%" height="600px" />
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
                                 @else
-                                <br><br>
+                                    <br><br>
                                     <h6> No sé a subido archivos para este documento </h6>
                                 @endif
 
@@ -184,3 +183,18 @@
 
 
 @endsection
+
+
+{{-- @if (Route::has('login'))
+<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+    @auth
+        <a href="{{ url('/targets/target') }}" class="text-sm text-gray-700 underline">Home</a>
+    @else
+        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
+        @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+        @endif
+    @endauth
+</div>
+@endif --}}

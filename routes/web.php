@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Documentos;
 
 
 /*
@@ -15,11 +16,23 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/', function (){
+    $documentos = Documentos::join('tipos', 'tipos.id', '=', 'documentos.tipoProceso')
+    ->join('subcategorias', 'subcategorias.id', '=', 'documentos.proceso')
+    ->join('siglas_documentos', 'siglas_documentos.id', '=', 'documentos.tipoDocumento')
+    ->join('estados', 'estados.id', '=', 'documentos.estado')
+    ->select('documentos.*', 'tipos.nombre_id as nombre_id', 'subcategorias.documento as documento', 'siglas_documentos.documento as siglas', 'estados.estado as status')
+    ->get();
+
+    return view('welcome', [
+        'documentos'        => $documentos,
+    ]);
+})->name('inicio');
 
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -51,7 +64,19 @@ Route::get('TipoDoc/update/{compra_id}', [App\Http\Controllers\TipoDocumentosCon
 Route::post('TipoDoc/update/{compra_id}', [App\Http\Controllers\TipoDocumentosController::class, 'updateTipoDocumentos'])->name('TipoDocumentos.update');
 Route::get('TipoDoc/lista', [App\Http\Controllers\TipoDocumentosController::class, 'getTipoDocumentos'])->name('TipoDocumentos.lista');
 
+//SubProceso
+Route::get('ProcesoE/create', [App\Http\Controllers\ProcesoEController::class, 'create'])->name('tipoProcesoE.create.vista');
+Route::post('ProcesoE/create', [App\Http\Controllers\ProcesoEController::class, 'createProcesoE'])->name('ProcesoE.create');
+Route::get('ProcesoE/update/{compra_id}', [App\Http\Controllers\ProcesoEController::class, 'update'])->name('ProcesoE.update.vista');
+Route::post('ProcesoE/update/{compra_id}', [App\Http\Controllers\ProcesoEController::class, 'updateProcesoE'])->name('ProcesoE.update');
+Route::get('ProcesoE/lista', [App\Http\Controllers\ProcesoEController::class, 'getProcesoE'])->name('ProcesoE.lista');
 
+//Procesos
+Route::get('Proceso/create', [App\Http\Controllers\ProcesoController::class, 'create'])->name('tipoProceso.create.vista');
+Route::post('Proceso/create', [App\Http\Controllers\ProcesoController::class, 'createProceso'])->name('Proceso.create');
+Route::get('Proceso/update/{compra_id}', [App\Http\Controllers\ProcesoController::class, 'update'])->name('Proceso.update.vista');
+Route::post('Proceso/update/{compra_id}', [App\Http\Controllers\ProcesoController::class, 'updateProceso'])->name('Proceso.update');
+Route::get('Proceso/lista', [App\Http\Controllers\ProcesoController::class, 'getProceso'])->name('Proceso.lista');
 
 // ubicaciones
 Route::get('ubicacion/create', [App\Http\Controllers\ubicacionController::class, 'create'])->name('listaubicacion.create.vista');
