@@ -51,6 +51,7 @@ Route::post('documentos/update/{compra_id}', [App\Http\Controllers\DocumentosCon
 Route::get('documentos/lista', [App\Http\Controllers\DocumentosController::class, 'getDocumentos'])->name('documentos.lista');
 Route::post('documentos/importar', [App\Http\Controllers\DocumentosController::class, 'importar'])->name('documentos.importar');
 Route::get('documentos/eliminar/{id}', [App\Http\Controllers\DocumentosController::class, 'delete'])->name('documentos.eliminar');
+Route::get('documentos/download/{id}', [App\Http\Controllers\DocumentosController::class, 'download'])->name('documentos.download');
 
 // subcategorias
 Route::post('documentos/subcategorias', [App\Http\Controllers\DocumentosController::class, 'subcategorias']);
@@ -84,6 +85,17 @@ Route::post('ubicacion/create', [App\Http\Controllers\ubicacionController::class
 Route::get('ubicacion/lista', [App\Http\Controllers\ubicacionController::class, 'getlistaubicacion'])->name('listaubicacion.lista');
 Route::get('ubicacion/update/{ubicacion_id}', [App\Http\Controllers\ubicacionController::class, 'update'])->name('listaubicacion.update.vista');
 Route::post('ubicacion/update/{ubicacion_id}', [App\Http\Controllers\ubicacionController::class, 'updatelistaubicacion'])->name('listaubicacion.update');
+
+//Rutas cargue multiple (Dropzone)
+Route::get('archivos/cargue', [App\Http\Controllers\fileController::class, 'cargue']); //->name('proveedor.create.vista')
+
+Route::get('archivos/create', [App\Http\Controllers\fileController::class, 'create'])->name('files.create.vista');
+Route::post('archivos/dropzone', [App\Http\Controllers\fileController::class, 'dropzone'])->name('Files.create');
+
+Route::get('archivos/eliminar/{id}', [App\Http\Controllers\fileController::class, 'delete'])->name('files.eliminar');
+Route::get('archivos/lista', [App\Http\Controllers\fileController::class, 'getFiles'])->name('files.lista');
+Route::get('archivos/update/{user_id}', [App\Http\Controllers\fileController::class, 'update'])->name('files.update.vista');
+Route::post('archivos/update/{user_id}', [App\Http\Controllers\fileController::class, 'updateFiles'])->name('files.update');
 
 Route::get('targets/target', [App\Http\Controllers\TargetController::class, 'gettarget'])->name('listatarget.target');
 

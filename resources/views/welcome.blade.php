@@ -63,11 +63,29 @@
             width: 300px;
             align-content: center;
         }
-        .dataTables_filter{
+
+        .dataTables_filter {
             text-align: center !important;
         }
 
+        .bajardoc {
+            display: flex;
+            width: 100%;
+            padding-bottom: 30px;
+            margin: 30px 0;
+            border-bottom: 1px solid #E7E7E7;
+        }
 
+        .bajardoc img,
+        .item_descarga img {
+            width: 70px;
+            height: auto;
+            margin-right: 30px;
+        }
+
+        .descarga {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -108,7 +126,8 @@
                     <a class="nav-link page-scroll" href="#register">BUSCAR <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="{{ route('documentos.lista') }}">ADMINISTRAR <span class="sr-only">(current)</span></a>
+                    <a class="nav-link page-scroll" href="{{ route('documentos.lista') }}">ADMINISTRAR <span
+                            class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <span class="nav-item social-icons">
@@ -194,9 +213,9 @@
                             navegar a través de miles de formatos registrados. Puede filtrar por sus difrentes
                             características, como el
                             tipo de proceso, subprocesos y nombre entre otros.
-                            <h5 />
-                            <h3 style="text-align: center; color:white;text-shadow: 0.1em 0.1em 0.2em black">Pruébelo
-                                usted mismo:</h3>
+                        </h5>
+                        <h3 style="text-align: center; color:white;text-shadow: 0.1em 0.1em 0.2em black">Pruébelo
+                            usted mismo:</h3>
                     </div>
                 </div>
             </div>
@@ -228,10 +247,6 @@
                                 <td>{{ $documento->versionActual }}</td>
                                 <td>{{ $documento->status }}</td>
                                 <td>
-                                    <a href="{{ route('documentos.update.vista', $documento->id) }}"
-                                        class="btn btn-success btn-sm mb-2">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
                                     <a data-toggle="modal" data-target="#modal-show-{{ $documento->id }}"
                                         class="btn btn-warning btn-sm mb-2">
                                         <i class="fa fa-eye"></i>
@@ -253,27 +268,53 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-
                                             <br>
-                                            <h5 align="center"><b>Datos del documento</b></h5>
-
-                                            <h6><b>Tipo de proceso: </b>{{ $documento->nombre_id }}</h6>
-                                            <h6><b>Proceso / Subproceso: </b>{{ $documento->documento }}</h6>
-                                            <h6><b>Tipo de documento: </b>{{ $documento->siglas }}</h6>
-                                            <h6><b>Código: </b>{{ $documento->codigo }}</h6>
-                                            <h6><b>Nombre: </b>{{ $documento->nombre }}</h6>
-                                            <h6><b>Versión actual: </b>{{ $documento->versionActual }}</h6>
-                                            <h6><b>Fecha de aprobación: </b>{{ $documento->fechaAprobacion }}</h6>
-                                            <h6><b>Estado de documento: </b>{{ $documento->status }}</h6>
+                                            <div class="card" style="width: 100%;">
+                                                <div class="card-header bg-primary text-white" align="center">
+                                                    Datos del documento
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Tipo de proceso: <b>{{ $documento->nombre_id }}</b></li>
+                                                    <li class="list-group-item">Proceso / Subproceso: <b>{{ $documento->documento }}</b></li>
+                                                    <li class="list-group-item">Tipo de documento: <b>{{ $documento->siglas }}</b></li>
+                                                    <li class="list-group-item">Código: <b>{{ $documento->codigo }}</b></li>
+                                                    <li class="list-group-item">Nombre: <b>{{ $documento->nombre }}</b></li>
+                                                    <li class="list-group-item">Versión actual: <b>{{ $documento->versionActual }}</b></li>
+                                                    <li class="list-group-item">Fecha de aprobación: <b>{{ $documento->fechaAprobacion }}</b></li>
+                                                    <li class="list-group-item">Estado de documento: <b>{{ $documento->status }}</b></li>
+                                                </ul>
+                                            </div>
                                             @if ($documento->name != null)
-                                                <h5 align="center"><b>Datos del archivo</b></h5>
-                                                <h6><b>Nombre documento: </b> {{ $documento->name }}</h6>
-                                                <h6><b>Url: </b><a target="_blank"
-                                                        href="{{ asset('files/biblioteca/' . $documento->ruta) }}">{{ asset('files/biblioteca/' . $documento->ruta) }}</a>
-                                                </h6>
-                                                <h6><b>Tamaño: </b> {{ $documento->size }} KB</h6>
-                                                <h6><b>Subida: </b> {{ $documento->updated_at }}</h6>
-
+                                                <div class="bajardoc">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <a href="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                                    title="{{ $documento->nombre }} ({{ $documento->updated_at }})."
+                                                                    target="blank">
+                                                                    <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_7271042.png"
+                                                                        alt="{{ $documento->nombre }} ({{ $documento->updated_at }})."
+                                                                        title="{{ $documento->nombre }} ({{ $documento->updated_at }})."
+                                                                        width="100" height="100"
+                                                                        class="mimethumb img-fluid">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="row">
+                                                                    <a href="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                                        title="{{ $documento->nombre }}."
+                                                                        target="blank">{{ $documento->nombre }}.</a>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <a class="descarga"
+                                                                        href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size }}
+                                                                        KB, Descargar</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h5 align="center"><b>Previsualización</b></h5>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div align="center">
@@ -359,26 +400,26 @@
                 // dom:'Pfrtip',
                 dom: 'PBlfrtip',
                 searchPanes: {
-                    cascadePanes:true,
-                    dtOpts:{
+                    cascadePanes: true,
+                    dtOpts: {
                         paging: 'true',
                         pagingType: 'numbers',
-                        searching:false,
+                        searching: false,
                     },
                 },
-                columnDefs:[{
-                    searchPanes:{
-                        show:false
+                columnDefs: [{
+                        searchPanes: {
+                            show: false
+                        },
+                        targets: [3, 4, 5, 6, 7]
                     },
-                    targets:[5,6]
-                },
-                {
-                    searchPanes:{
-                        show:true
+                    {
+                        searchPanes: {
+                            show: true
+                        },
+                        targets: [0, 1, 2]
                     },
-                    targets:[4]
-                },
-            ],
+                ],
 
                 "language": {
                     searchPanes: {
@@ -390,7 +431,7 @@
                         "clearMessage": "Borrar seleccionados",
                         "showMessage": "Mostrar Todo",
                         "collapseMessage": "Contraer Todo",
-                        count: 'Total {total}',
+                        count: '{total}',
                         countFiltered: '{shown} ({total})',
                     },
                     "lengthMenu": "Mostrar _MENU_ registros por página",

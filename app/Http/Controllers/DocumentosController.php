@@ -105,9 +105,21 @@ class DocumentosController extends Controller
             /*primero muevo el archivo antes de generar un registro en la bd por si se presenta fallos de permisos en la subida, no me genere
             registros basura en la bd*/
             $request->file->move( public_path('files/biblioteca'), $Documentos->ruta);
-        }else{
-            dd('no hay archivos');
         }
+
+        if($request->file_edit != null){
+
+            // $archivo = new Files();
+            $Documentos->name_edit     = $request->file_edit->getClientOriginalName();
+            $Documentos->extension_edit  = $request->file_edit->getClientOriginalExtension();
+            $Documentos->ruta_edit       = str_replace(" ","_",date('Y-m-d').'_'.$Documentos->name_edit);
+            $tipo_edit                   = explode('/', $request->file_edit->getClientMimeType() );
+            $Documentos->size_edit       = number_format($request->file_edit->getSize()/1024,2,',','.');
+            /*primero muevo el archivo antes de generar un registro en la bd por si se presenta fallos de permisos en la subida, no me genere
+            registros basura en la bd*/
+            $request->file_edit->move( public_path('files/biblioteca'), $Documentos->ruta_edit);
+        }
+
 
         $Documentos->save();
 
@@ -205,26 +217,6 @@ class DocumentosController extends Controller
 
     }
 
-    // public function subcategorias2(Request $request){
-    //     if(isset($request->texto)){
-    //         $subcategorias = Subcategorias::whereProceso_f($request->texto)->get();
-    //         return response()->json(
-    //             [
-    //                 'lista' => $subcategorias,
-    //                 'success' => true
-    //             ]
-    //             );
-    //     }else{
-    //         return response()->json(
-    //             [
-    //                 'success' => false
-    //             ]
-    //             );
-
-    //     }
-
-    // }
-
     public function busqueda(Request $request){
         if(isset($request->texto)){
             $subcategorias = Subcategorias::whereId($request->texto)->get();
@@ -300,6 +292,12 @@ class DocumentosController extends Controller
         $documentos->save();
 
         return back()->with('status','¡Archivo eliminado exitosamente!');
+    }
+
+    public function download($id){
+        $documentos = Documentos::find($id);
+        $pathtoFile = public_path().'/'.'files/biblioteca'.'/'.$documentos->ruta;
+        return response()->download($pathtoFile);
     }
 
 

@@ -23,12 +23,19 @@ class Documentos extends Model
         'estado',
         'observacion',
 
-        // files
+        // files pdf
         'extension',
         'name',
         'ruta',
         'mime',
         'size',
+
+        // files editor
+        'extension_edit',
+        'name_edit',
+        'ruta_edit',
+        'size_edit',
+
 
     ];
 

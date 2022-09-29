@@ -26,12 +26,19 @@ class Documentos extends Migration
             $table->text('observacion');
             $table->timestamps();
 
-            // files
+            // files pdf
             $table->string('extension');
             $table->string('name');
             $table->string('ruta');
             $table->string('mime');
             $table->string('size');
+
+            // files editor
+            $table->string('extension_edit');
+            $table->string('name_edit');
+            $table->string('ruta_edit');
+            $table->string('size_edit');
+
 
         });
     }

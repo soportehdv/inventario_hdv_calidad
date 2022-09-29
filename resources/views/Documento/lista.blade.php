@@ -11,6 +11,26 @@
 
 @section('cssDataTable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+    <style>
+        .bajardoc {
+            display: flex;
+            width: 100%;
+            padding-bottom: 30px;
+            margin: 30px 0;
+            border-bottom: 1px solid #E7E7E7;
+        }
+
+        .bajardoc img,
+        .item_descarga img {
+            width: 70px;
+            height: auto;
+            margin-right: 30px;
+        }
+
+        .descarga {
+            text-decoration: none;
+        }
+    </style>
 @endsection
 
 @endsection
@@ -116,27 +136,125 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
                                 <br>
-                                <h5 align="center"><b>Datos del documento</b></h5>
-
-                                <h6><b>Tipo de proceso: </b>{{ $documento->nombre_id }}</h6>
-                                <h6><b>Proceso / Subproceso: </b>{{ $documento->documento }}</h6>
-                                <h6><b>Tipo de documento: </b>{{ $documento->siglas }}</h6>
-                                <h6><b>Código: </b>{{ $documento->codigo }}</h6>
-                                <h6><b>Nombre: </b>{{ $documento->nombre }}</h6>
-                                <h6><b>Versión actual: </b>{{ $documento->versionActual }}</h6>
-                                <h6><b>Fecha de aprobación: </b>{{ $documento->fechaAprobacion }}</h6>
-                                <h6><b>Estado de documento: </b>{{ $documento->status }}</h6>
+                                <div class="card" style="width: 100%;">
+                                    <div class="card-header bg-primary text-white" align="center">
+                                        Datos del documento
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Tipo de proceso: <b>{{ $documento->nombre_id }}</b>
+                                        </li>
+                                        <li class="list-group-item">Proceso / Subproceso:
+                                            <b>{{ $documento->documento }}</b>
+                                        </li>
+                                        <li class="list-group-item">Tipo de documento: <b>{{ $documento->siglas }}</b>
+                                        </li>
+                                        <li class="list-group-item">Código: <b>{{ $documento->codigo }}</b></li>
+                                        <li class="list-group-item">Nombre: <b>{{ $documento->nombre }}</b></li>
+                                        <li class="list-group-item">Versión actual:
+                                            <b>{{ $documento->versionActual }}</b>
+                                        </li>
+                                        <li class="list-group-item">Fecha de aprobación:
+                                            <b>{{ $documento->fechaAprobacion }}</b>
+                                        </li>
+                                        @if ($documento->status != null)
+                                            <li class="list-group-item">Estado de documento:
+                                                <b>{{ $documento->status }}</b>
+                                            </li>
+                                        @endif
+                                        @if ($documento->observacion != null)
+                                            <li class="list-group-item">Observaciones:
+                                                <b>{{ $documento->observacion }}</b>
+                                            </li>
+                                        @else
+                                            <li class="list-group-item">Observaciones:
+                                                <b>No hay observaciones para este documento</b>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </div>
                                 @if ($documento->name != null)
-                                    <h5 align="center"><b>Datos del archivo</b></h5>
-                                    <h6><b>Nombre documento: </b> {{ $documento->name }}</h6>
-                                    <h6><b>Url: </b><a target="_blank"
-                                            href="{{ asset('files/biblioteca/' . $documento->ruta) }}">{{ asset('files/biblioteca/' . $documento->ruta) }}</a>
-                                    </h6>
-                                    <h6><b>Tamaño: </b> {{ $documento->size }} KB</h6>
-                                    <h6><b>Subida: </b> {{ $documento->updated_at }}</h6>
-
+                                    <div class="bajardoc">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <a href="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                        title="{{ $documento->nombre }} ({{ $documento->updated_at }})."
+                                                        target="blank">
+                                                        <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_7271042.png"
+                                                            alt="{{ $documento->nombre }} ({{ $documento->updated_at }})."
+                                                            title="{{ $documento->nombre }} ({{ $documento->updated_at }})."
+                                                            width="100" height="100"
+                                                            class="mimethumb img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <a href="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                            title="{{ $documento->nombre }}."
+                                                            target="blank">{{ $documento->nombre }}.</a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <a class="descarga"
+                                                            href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size }}
+                                                            KB, Descargar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @if ($documento->name_edit != null && $documento->extension_edit == 'doc')
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
+                                                            title="{{ $documento->nombre }}." target="blank">
+                                                            <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_337932.png"
+                                                                alt="{{ $documento->nombre }}."
+                                                                title="{{ $documento->nombre }}." width="100"
+                                                                height="100" class="mimethumb img-fluid">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
+                                                                title="{{ $documento->nombre }}."
+                                                                target="blank">{{ $documento->nombre }}.</a>
+                                                        </div>
+                                                        <div class="row">
+                                                            <a class="descarga"
+                                                                href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size_edit }}
+                                                                KB, Descargar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
+                                                            title="{{ $documento->nombre }}." target="blank">
+                                                            <img src="https://www.hdv.gov.co/files/biblioteca/2022-09-27_337958.png"
+                                                                alt="{{ $documento->nombre }}."
+                                                                title="{{ $documento->nombre }}." width="100"
+                                                                height="100" class="mimethumb img-fluid">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
+                                                                title="{{ $documento->nombre }}."
+                                                                target="blank">{{ $documento->nombre }}.</a>
+                                                        </div>
+                                                        <div class="row">
+                                                            <a class="descarga"
+                                                                href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size_edit }}
+                                                                KB, Descargar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <h5 align="center"><b>Previsualización</b></h5>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div align="center">

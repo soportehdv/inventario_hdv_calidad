@@ -115,10 +115,17 @@
                                         <div>
                                             <p>-</p>
                                         </div>
-                                        <div class="col-md-4">
-                                            <input type="number" class="form-control" name="cN" id="cN"
-                                                value="{{ $divicion[2] }}">
-                                        </div>
+                                        @if (isset($divicion[2]))
+                                            <div class="col-md-4">
+                                                <input type="number" class="form-control" name="cN" id="cN"
+                                                    value="{{ $divicion[2] }}">
+                                            </div>
+                                        @else
+                                            <div class="col-md-4">
+                                                <input type="number" class="form-control" name="cN" id="cN"
+                                                    value="">
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-sm-2 center_margin">

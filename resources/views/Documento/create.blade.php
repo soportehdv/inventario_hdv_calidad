@@ -129,10 +129,18 @@
                                 </div>
                                 <div class="col-sm-12 center_margin">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Archivos </label>
-                                        <input type="file" class="form-control" name="file" multiple required>
+                                        <label for="exampleInputEmail1">Archivos (PDF)</label>
+                                        <input type="file" class="form-control" name="file" required>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-12 center_margin">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Archivos (EDITABLES)</label>
+                                        <input type="file" class="form-control" name="file_edit">
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-12 center_margin">
                                     <input class="btn btn-success float-right" type="submit" value="Ingresar" />
                                     <a class="btn btn-danger float-left" href="{{ URL::previous() }}">Atras</a>
