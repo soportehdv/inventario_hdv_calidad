@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Documentos;
+use App\Models\Blog;
 
 
 /*
@@ -17,6 +18,7 @@ use App\Models\Documentos;
 */
 
 Route::get('/', function (){
+    $blog = Blog::find(1);
     $documentos = Documentos::join('tipos', 'tipos.id', '=', 'documentos.tipoProceso')
     ->join('subcategorias', 'subcategorias.id', '=', 'documentos.proceso')
     ->join('siglas_documentos', 'siglas_documentos.id', '=', 'documentos.tipoDocumento')
@@ -26,6 +28,7 @@ Route::get('/', function (){
 
     return view('welcome', [
         'documentos'        => $documentos,
+        'blog'        => $blog,
     ]);
 })->name('inicio');
 
@@ -35,6 +38,11 @@ Auth::routes();
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+//Rutas info empresa
+Route::get('blog/editar',[App\Http\Controllers\BlogController::class, 'edit'])->name('blog.editar');
+Route::post('blog/update',[App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
+
 
 //USERS
 Route::get('user/create', [App\Http\Controllers\UserController::class, 'create'])->name('user.create.vista');
@@ -101,3 +109,7 @@ Route::get('targets/target', [App\Http\Controllers\TargetController::class, 'get
 
 
 Route::get('ventas/admin/invoice/{categoria}',[App\Http\Controllers\InvoiceController::class, 'sacaSub']);
+
+Route::get('blog/list', [App\Http\Controllers\PaginaController::class, 'gettarget'])->name('listaBlog.target');
+
+

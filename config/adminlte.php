@@ -282,73 +282,17 @@ return [
             ],
         ],
 
-        // [
-        //     'text' => 'Devolución de productos',
-        //     'url'  => 'devolucion/list',
-        //     'icon' => 'fas fa-fw fa-share fa-flip-horizontal',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Pedidos',
-        //     'url'  => 'clientes/list',
-        //     'icon' => 'fas fa-fw fa-chalkboard-teacher',
-        //     'role'        => 'servicios'
-
-        // ],
-        // [
-        //     'text' => 'Proveedores',
-        //     'url'  => 'proveedor/list',
-        //     'icon' => 'fas fa-fw fa-truck',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Ubicaciones',
-        //     'url'  => 'ubicacion/lista',
-        //     'icon' => 'fas fa-fw fa-map-marker-alt',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text'    => 'Stock',
-        //     'url'     => 'stock/list',
-        //     'icon'    => 'fas fa-fw fa-warehouse',
-        //     'role'        => 'admin',
-
-        // ],
-
-        // [
-        //     'text' => 'Entrega',
-        //     'url'  => 'ventas/todas',
-        //     'icon' => 'fas fa-fw fa-dolly',
-        //     'role' => 'admin'
-        // ],
-        // [
-        //     'text' => 'historial de lavado',
-        //     'url'  => 'lavado/todas',
-        //     'icon' => 'fas fa-fw fa-hospital ',
-        //     'role' => 'admin'
-        // ],
         [
-            'text' => 'Archivos',
-            'url'  => 'archivos/lista',
+            'text' => 'Blog',
+            'url'  => 'blog/editar',
             'icon' => 'fas fa-fw fa-lock',
             'role'        => 'admin'
-
         ],
         // [
-        //     'text' => 'Nombres precios',
-        //     'url'  => 'nombres/lista',
+        //     'text' => 'Archivos',
+        //     'url'  => 'archivos/lista',
         //     'icon' => 'fas fa-fw fa-lock',
-        //     'role' => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Fracciones',
-        //     'url'  => 'fracciones/lista',
-        //     'icon' => 'fas fa-fw fa-lock',
-        //     'role' => 'admin'
+        //     'role'        => 'admin'
 
         // ],
 

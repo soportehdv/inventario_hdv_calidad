@@ -150,12 +150,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-container">
-                        <div class="countdown">
+                        {{-- <div class="countdown">
                             <span id="clock"></span>
-                        </div>
-                        <h1>Bienvenidos al Repositorio de calidad</h1>
-                        <p class="p-large">Aqui encontraras todos los formatos vigente listos para su descarga!</p>
-                        <a class="btn-solid-lg page-scroll" href="#register">Buscar</a>
+                        </div> --}}
+                        <h5>{{ $blog->titulo }}</h5>
+                        <h1>{{ $blog->subtitulo1 }}</h1>
+                        <p class="p-large">{{ $blog->subtitulo2 }}</p>
+                        <a class="btn-solid-lg page-scroll" href="#register">{{ $blog->tBoton }}</a>
                         {{-- <a class="btn-outline-lg page-scroll" href="#instructor">DISCOVER</a> --}}
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
@@ -207,12 +208,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="text-container">
-                        <h5 style="text-align: center; color: #215196;;font-weight: 500;">Reporitorio de calidad es un
-                            directorio global de los formatos de acceso abierto del HOSPITAL DEPARTAMENTAL DE
-                            VILLAVICENCIO. Puede buscar y
-                            navegar a través de miles de formatos registrados. Puede filtrar por sus difrentes
-                            características, como el
-                            tipo de proceso, subprocesos y nombre entre otros.
+                        <h5 style="text-align: center; color: #215196;;font-weight: 500;">{{ $blog->parrafo }}
                         </h5>
                         <h3 style="text-align: center; color:white;text-shadow: 0.1em 0.1em 0.2em black">Pruébelo
                             usted mismo:</h3>
