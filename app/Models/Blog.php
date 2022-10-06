@@ -30,6 +30,8 @@ class Blog extends Model
         'cSubtitulo2',
         'cBoton',
         'cParrafo',
+        'cTitulo2',
+
 
     ];
 }

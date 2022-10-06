@@ -42,6 +42,11 @@ Auth::routes();
 //Rutas info empresa
 Route::get('blog/editar',[App\Http\Controllers\BlogController::class, 'edit'])->name('blog.editar');
 Route::post('blog/update',[App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
+Route::get('blog/eliminar1/{id}', [App\Http\Controllers\BlogController::class, 'delete1'])->name('blog.eliminar1');
+Route::get('blog/eliminar2/{id}', [App\Http\Controllers\BlogController::class, 'delete2'])->name('blog.eliminar2');
+Route::get('blog/eliminar3/{id}', [App\Http\Controllers\BlogController::class, 'delete3'])->name('blog.eliminar3');
+Route::get('blog/eliminarlogo/{id}', [App\Http\Controllers\BlogController::class, 'deletelogo'])->name('blog.eliminarlogo');
+
 
 
 //USERS
@@ -111,5 +116,6 @@ Route::get('targets/target', [App\Http\Controllers\TargetController::class, 'get
 Route::get('ventas/admin/invoice/{categoria}',[App\Http\Controllers\InvoiceController::class, 'sacaSub']);
 
 Route::get('blog/list', [App\Http\Controllers\PaginaController::class, 'gettarget'])->name('listaBlog.target');
+
 
 

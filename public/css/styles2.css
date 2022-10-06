@@ -147,17 +147,6 @@ a:hover {
 	text-decoration: none;
 }
 
-.btn-solid-lg {
-	display: inline-block;
-	padding: 1.375rem 2.625rem 1.375rem 2.625rem;
-	border: 0.125rem solid #ffbd50;
-	border-radius: 2rem;
-	background-color: #ffbd50;
-	color: #333;
-	font: 600 0.875rem/0 "Montserrat", sans-serif;
-	text-decoration: none;
-	transition: all 0.2s;
-}
 
 .btn-solid-lg:hover {
 	border: 0.125rem solid #333;
@@ -757,14 +746,7 @@ input[type='checkbox'] {
 /*********************/
 /*    04. Header     */
 /*********************/
-.header {
-	position: relative;
-	padding-top: 8rem;
-	padding-bottom: 40%;
-	background: linear-gradient(to bottom right, rgb(0 145 255 / 0%), rgb(42 110 255 / 100%)), url('../images/header-background.jpg') center center no-repeat;
-	background-size: cover;
-	text-align: center;
-}
+
 
 .header .countdown {
 	margin-bottom: 0.5rem;
@@ -799,10 +781,7 @@ input[type='checkbox'] {
 	color: #215196;
 }
 
-.header .p-large {
-	margin-bottom: 1.75rem;
-	color: #4c1c1c;
-}
+
 
 .header .btn-solid-lg {
 	margin-right: 0.5rem;

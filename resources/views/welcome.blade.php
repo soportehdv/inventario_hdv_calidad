@@ -86,6 +86,44 @@
         .descarga {
             text-decoration: none;
         }
+
+        .form-1 {
+            background-color: {{ $blog->cFondo1 }} !important;
+        }
+
+        .header {
+            position: relative;
+            padding-top: 8rem;
+            padding-bottom: 35%;
+            background: linear-gradient(to bottom right, rgb(0 145 255 / 0%), {{ $blog->cFondo2 }}), url('./images/header-background.jpg') center center no-repeat;
+            background-size: cover;
+            text-align: center;
+        }
+
+        h5 {
+            color: {{ $blog->cTitulo }};
+        }
+
+        .header h1 {
+            color: {{ $blog->cSubtitulo1 }} !important;
+        }
+
+        .header .p-large {
+            margin-bottom: 1.75rem;
+            color: {{ $blog->cSubtitulo2 }};
+        }
+
+        .btn-solid-lg {
+            display: inline-block;
+            padding: 1.375rem 2.625rem 1.375rem 2.625rem;
+            border: 0.125rem solid {{ $blog->cBoton }};
+            border-radius: 2rem;
+            background-color: {{ $blog->cBoton }};
+            color: #333;
+            font: 600 0.875rem/0 "Montserrat", sans-serif;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
     </style>
 </head>
 
@@ -110,7 +148,7 @@
 
         <!-- Image Logo -->
         <a class="navbar-brand logo-image " href="https://www.hdv.gov.co"><img class="imagen-b"
-                src="images/logo-mas-pequeño.png" alt="alternative"></a>
+                src="files/biblioteca/{{ $blog->logo }}" alt="alternative"></a>
 
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -171,19 +209,19 @@
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="images/details-slide-1.jpg" alt="alternative">
+                            <img class="img-fluid" src="files/biblioteca/{{ $blog->imagen1 }}" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="images/details-slide-22.jpg" alt="alternative">
+                            <img class="img-fluid" src="files/biblioteca/{{ $blog->imagen2 }}" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="images/details-slide-33.jpg" alt="alternative">
+                            <img class="img-fluid" src="files/biblioteca/{{ $blog->imagen3 }}" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
@@ -208,10 +246,10 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="text-container">
-                        <h5 style="text-align: center; color: #215196;;font-weight: 500;">{{ $blog->parrafo }}
+                        <h5 style="text-align: center; color: {{ $blog->cParrafo }};;font-weight: 500;">{{ $blog->parrafo }}
                         </h5>
-                        <h3 style="text-align: center; color:white;text-shadow: 0.1em 0.1em 0.2em black">Pruébelo
-                            usted mismo:</h3>
+                        <h3 style="text-align: center; color:{{ $blog->cTitulo2 }};text-shadow: 0.1em 0.1em 0.2em black">
+                            {{ $blog->fTitulo }}</h3>
                     </div>
                 </div>
             </div>
@@ -270,14 +308,30 @@
                                                     Datos del documento
                                                 </div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Tipo de proceso: <b>{{ $documento->nombre_id }}</b></li>
-                                                    <li class="list-group-item">Proceso / Subproceso: <b>{{ $documento->documento }}</b></li>
-                                                    <li class="list-group-item">Tipo de documento: <b>{{ $documento->siglas }}</b></li>
-                                                    <li class="list-group-item">Código: <b>{{ $documento->codigo }}</b></li>
-                                                    <li class="list-group-item">Nombre: <b>{{ $documento->nombre }}</b></li>
-                                                    <li class="list-group-item">Versión actual: <b>{{ $documento->versionActual }}</b></li>
-                                                    <li class="list-group-item">Fecha de aprobación: <b>{{ $documento->fechaAprobacion }}</b></li>
-                                                    <li class="list-group-item">Estado de documento: <b>{{ $documento->status }}</b></li>
+                                                    <li class="list-group-item">Tipo de proceso:
+                                                        <b>{{ $documento->nombre_id }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Proceso / Subproceso:
+                                                        <b>{{ $documento->documento }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Tipo de documento:
+                                                        <b>{{ $documento->siglas }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Código:
+                                                        <b>{{ $documento->codigo }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Nombre:
+                                                        <b>{{ $documento->nombre }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Versión actual:
+                                                        <b>{{ $documento->versionActual }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Fecha de aprobación:
+                                                        <b>{{ $documento->fechaAprobacion }}</b>
+                                                    </li>
+                                                    <li class="list-group-item">Estado de documento:
+                                                        <b>{{ $documento->status }}</b>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             @if ($documento->name != null)
