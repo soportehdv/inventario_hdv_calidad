@@ -202,7 +202,7 @@
             for (let i in data.lista) {
                 var opciones = data.lista[i].sigla;
             }
-            $('#cT').val(opciones);
+            $('#cD').val(opciones);
         }).catch(error => console.error(error));
     });
     $(document).on('change', '#tipoDoc', (e) => {
@@ -225,7 +225,7 @@
                 // var opciones = data.lista[i].id;
 
             }
-            $('#cD').val(opciones);
+            $('#cT').val(opciones);
             // console.log(opciones);
         }).catch(error => console.error(error));
     });

@@ -12,6 +12,7 @@ use App\Models\Subcategorias;
 use App\Models\SiglasDocumentos;
 // use Excel;
 use App\Imports\DocumentosImport;
+use App\Exports\DocumentosExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
@@ -277,6 +278,16 @@ class DocumentosController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function exportar(Request $request){
+        // dd($request->all());
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+        ob_end_clean();
+        ob_start();
+
+        return Excel::download( new DocumentosExport($fecha_ini, $fecha_fin), 'listado.xls');
     }
 
     public function delete($id){

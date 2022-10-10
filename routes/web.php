@@ -63,6 +63,7 @@ Route::get('documentos/update/{compra_id}', [App\Http\Controllers\DocumentosCont
 Route::post('documentos/update/{compra_id}', [App\Http\Controllers\DocumentosController::class, 'updateDocumentos'])->name('documentos.update');
 Route::get('documentos/lista', [App\Http\Controllers\DocumentosController::class, 'getDocumentos'])->name('documentos.lista');
 Route::post('documentos/importar', [App\Http\Controllers\DocumentosController::class, 'importar'])->name('documentos.importar');
+Route::post('documentos/exportar', [App\Http\Controllers\DocumentosController::class, 'exportar'])->name('documentos.exportar');
 Route::get('documentos/eliminar/{id}', [App\Http\Controllers\DocumentosController::class, 'delete'])->name('documentos.eliminar');
 Route::get('documentos/download/{id}', [App\Http\Controllers\DocumentosController::class, 'download'])->name('documentos.download');
 

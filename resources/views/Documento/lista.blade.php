@@ -11,6 +11,9 @@
 
 @section('cssDataTable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/2.0.2/css/searchPanes.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css" />
     <style>
         .bajardoc {
             display: flex;
@@ -40,12 +43,16 @@
 
 
 <div class="container">
-    <a href="{{ route('documentos.create.vista') }}" class="btn btn-primary mb-2"><i class="fas fa-plus-circle"></i> Añadir
+    <a href="{{ route('documentos.create.vista') }}" class="btn btn-primary mb-2"><i class="fas fa-plus-circle"></i>
+        Añadir
         nuevo</a>
     <a data-toggle="modal" data-target="#modal-importar" class="btn btn-primary mb-2" style="color: white">
         <i class="fas fa-plus-circle"></i> Importar
     </a>
-    {{-- modal show --}}
+    <a data-toggle="modal" data-target="#modal-exportar" class="btn btn-primary mb-2" style="color: white">
+        <i class="fas fa-plus-circle"></i> exportar
+    </a>
+    {{-- modal importar --}}
     <div class="modal fade" id="modal-importar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -63,6 +70,36 @@
                             <div class="col-md-12">
                                 <input type="file" name="doc" id="doc" required>
                                 <button class="btn btn-primary" type="submit">importar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- modal exportar --}}
+    <div class="modal fade" id="modal-exportar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Filtro para exportar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="{{ route('documentos.exportar') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="col-md-12">
+                                <input type="date" name="fecha_ini" id="fecha_ini" required>
+                                <input type="date" name="fecha_fin" id="fecha_fin" required>
+                                <button class="btn btn-primary" type="submit">exportar</button>
                             </div>
                         </form>
                     </div>
@@ -142,7 +179,8 @@
                                         Datos del documento
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Tipo de proceso: <b>{{ $documento->nombre_id }}</b>
+                                        <li class="list-group-item">Tipo de proceso:
+                                            <b>{{ $documento->nombre_id }}</b>
                                         </li>
                                         <li class="list-group-item">Proceso / Subproceso:
                                             <b>{{ $documento->documento }}</b>
@@ -227,7 +265,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @else
+                                            @elseif($documento->name_edit != null)
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
@@ -251,6 +289,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            @else
+                                                <br><br>
+                                                <h6> No sé a subido archivos editables para este documento </h6>
                                             @endif
                                         </div>
                                     </div>
@@ -290,9 +331,74 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/searchpanes/2.0.2/js/dataTables.searchPanes.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+
+
         <script>
             $(document).ready(function() {
-                $('#documentos').DataTable();
+                $('#documentos').DataTable({
+                    dom: 'PBfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    searchPanes: {
+                        cascadePanes: true,
+                        dtOpts: {
+                            paging: 'true',
+                            pagingType: 'numbers',
+                            searching: false,
+                        },
+                    },
+                    columnDefs: [{
+                            searchPanes: {
+                                show: false
+                            },
+                            targets: [3, 4, 5, 6, 7]
+                        },
+                        {
+                            searchPanes: {
+                                show: true
+                            },
+                            targets: [0, 1, 2]
+                        },
+                    ],
+
+                    "language": {
+                        searchPanes: {
+                            title: {
+                                _: 'Total de filtros selecionados - %d',
+                                0: 'Selecione un opción para filtrar tu busqueda',
+                                1: 'Se ha selecionado un filtro'
+                            },
+                            "clearMessage": "Borrar seleccionados",
+                            "showMessage": "Mostrar Todo",
+                            "collapseMessage": "Contraer Todo",
+                            count: '{total}',
+                            countFiltered: '{shown} ({total})',
+                        },
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "No se ha encontrado nada relacionado - Disculpa",
+                        "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        },
+                        "buttons": {
+                            "copy": "Copiar",
+                            "print": "Imprimir",
+                        }
+                    }
+                });
             });
         </script>
     @endsection

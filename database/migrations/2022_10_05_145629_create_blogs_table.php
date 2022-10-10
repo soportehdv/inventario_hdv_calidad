@@ -34,7 +34,7 @@ class CreateBlogsTable extends Migration
             $table->text('cSubtitulo2');
             $table->text('cBoton');
             $table->text('cParrafo');
-            $table->string('fTitulo2');
+            $table->string('cTitulo2');
             $table->timestamps();
         });
     }
