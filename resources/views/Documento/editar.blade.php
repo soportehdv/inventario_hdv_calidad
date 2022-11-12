@@ -157,11 +157,11 @@
                                             <label for="">Estado </label>
                                             <select id="estado" name="estado" class="form-control">
                                                 <option value="">Selecciona una opción</option>
-                                                @foreach ($estado as $est)
+                                                {{-- @foreach ($estado as $est)
                                                     <option value="{{ $est->id }}">
                                                         {{ $est->estado }}
                                                     </option>
-                                                @endforeach
+                                                @endforeach --}}
 
                                                 @foreach ($estado as $est)
                                                     <option value="{{ $est->id }}"
@@ -171,6 +171,23 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-sm-12 center_margin">
+                                    <label for="">Ubicacion fisica </label>
+                                    <select id="archivador" name="archivador" class="form-control" required>
+                                        <option value="">Selecciona una opción</option>
+                                        @foreach ($Files as $file)
+                                            <option value="{{ $file->id }}">
+                                                {{ $file->nombre }}
+                                            </option>
+                                        @endforeach
+
+                                        @foreach ($Files as $file)
+                                            <option value="{{ $file->id }}"
+                                                @if ($documentos->archivador === $file->id) selected='selected' @endif>
+                                                {{ $file->nombre }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-sm-12 center_margin">
                                     <label for="">Observación</label>

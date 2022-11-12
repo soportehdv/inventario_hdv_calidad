@@ -23,6 +23,7 @@ class Documentos extends Migration
             $table->integer('versionActual');
             $table->date('fechaAprobacion');
             $table->integer('estado');
+            $table->integer('archivador')->nullable();
             $table->text('observacion');
             $table->timestamps();
 

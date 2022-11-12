@@ -9,6 +9,7 @@ use App\Models\Documentos;
 use App\Models\Responsables;
 use Illuminate\Http\Request;
 use App\Models\Subcategorias;
+use App\Models\Files;
 use App\Models\SiglasDocumentos;
 // use Excel;
 use App\Imports\DocumentosImport;
@@ -50,6 +51,7 @@ class DocumentosController extends Controller
         $siglasDocumentos = SiglasDocumentos::all();
         $subcategorias = Subcategorias::all();
         $documentos = Documentos::all();
+        $Files = Files::all();
 
         return view('Documento/create', [
             'estado'            => $estado,
@@ -58,6 +60,7 @@ class DocumentosController extends Controller
             'siglasDocumentos'  => $siglasDocumentos,
             'subcategorias'     => $subcategorias,
             'documentos'        => $documentos,
+            'Files'             => $Files,
         ]);
     }
 
@@ -92,6 +95,7 @@ class DocumentosController extends Controller
         $Documentos->versionActual      = $request->input('version');
         $Documentos->fechaAprobacion    = $request->input('fecha');
         $Documentos->estado             = $request->input('estado');
+        $Documentos->archivador         = $request->input('archivador');
         $Documentos->observacion        = $request->input('observacion');
 
         if($request->file != null){
@@ -136,6 +140,7 @@ class DocumentosController extends Controller
         $responsables = Responsables::all();
         $siglasDocumentos = SiglasDocumentos::all();
         $subcategorias = Subcategorias::all();
+        $Files = Files::all();
         $documentos = Documentos::where('id', $id)->first();
 
         return view('Documento/editar', [
@@ -145,6 +150,7 @@ class DocumentosController extends Controller
             'siglasDocumentos'  => $siglasDocumentos,
             'subcategorias'     => $subcategorias,
             'documentos'        => $documentos,
+            'Files'             => $Files,
         ]);
     }
     public function updateDocumentos(Request $request, $documento_id)
@@ -175,6 +181,7 @@ class DocumentosController extends Controller
         $documentos->versionActual      = $request->input('version');
         $documentos->fechaAprobacion    = $request->input('fecha');
         $documentos->estado             = $request->input('estado');
+        $Documentos->archivador         = $request->input('archivador');
         $documentos->observacion        = $request->input('observacion');
 
         if($request->file != null){

@@ -21,6 +21,7 @@ class Documentos extends Model
         'versionActual',
         'fechaAprobacion',
         'estado',
+        'archivador',
         'observacion',
 
         // files pdf

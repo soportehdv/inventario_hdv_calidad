@@ -11,9 +11,8 @@ class Files extends Model
 
     protected $fillable = ([
         'nombre',
-        'ruta',
-        'mime',
-        'size',
+        'ubicacion',
+        'caracteristicas',
     ]);
 
 }

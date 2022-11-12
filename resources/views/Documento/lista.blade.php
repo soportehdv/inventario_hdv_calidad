@@ -291,7 +291,7 @@
                                                 </div>
                                             @else
                                                 <br><br>
-                                                <h6> No sé a subido archivos editables para este documento </h6>
+                                                <h6> No sé han subido archivos editables para este documento </h6>
                                             @endif
                                         </div>
                                     </div>
@@ -312,9 +312,8 @@
                                     </div>
                                 @else
                                     <br><br>
-                                    <h6> No sé a subido archivos para este documento </h6>
+                                    <h6> No sé han subido archivos para este documento </h6>
                                 @endif
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -323,8 +322,6 @@
                     </div>
                 </div>
             @endforeach
-
-
         </tbody>
     </table>
     @section('jsDataTable')
@@ -339,8 +336,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-
-
         <script>
             $(document).ready(function() {
                 $('#documentos').DataTable({
@@ -403,22 +398,4 @@
         </script>
     @endsection
 </div>
-
-
-
 @endsection
-
-
-{{-- @if (Route::has('login'))
-<div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-    @auth
-        <a href="{{ url('/targets/target') }}" class="text-sm text-gray-700 underline">Home</a>
-    @else
-        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
-        @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-        @endif
-    @endauth
-</div>
-@endif --}}

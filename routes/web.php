@@ -106,10 +106,11 @@ Route::get('archivos/cargue', [App\Http\Controllers\fileController::class, 'carg
 Route::get('archivos/create', [App\Http\Controllers\fileController::class, 'create'])->name('files.create.vista');
 Route::post('archivos/dropzone', [App\Http\Controllers\fileController::class, 'dropzone'])->name('Files.create');
 
-Route::get('archivos/eliminar/{id}', [App\Http\Controllers\fileController::class, 'delete'])->name('files.eliminar');
-Route::get('archivos/lista', [App\Http\Controllers\fileController::class, 'getFiles'])->name('files.lista');
-Route::get('archivos/update/{user_id}', [App\Http\Controllers\fileController::class, 'update'])->name('files.update.vista');
-Route::post('archivos/update/{user_id}', [App\Http\Controllers\fileController::class, 'updateFiles'])->name('files.update');
+Route::get('archivador/create', [App\Http\Controllers\fileController::class, 'create'])->name('Archivador.create.vista');
+Route::post('archivador/create', [App\Http\Controllers\fileController::class, 'createArchivador'])->name('Archivador.create');
+Route::get('archivador/lista', [App\Http\Controllers\fileController::class, 'getFiles'])->name('Archivador.lista');
+Route::get('archivador/update/{user_id}', [App\Http\Controllers\fileController::class, 'update'])->name('Archivador.update.vista');
+Route::post('archivador/update/{user_id}', [App\Http\Controllers\fileController::class, 'updateArchivador'])->name('Archivador.update');
 
 Route::get('targets/target', [App\Http\Controllers\TargetController::class, 'gettarget'])->name('listatarget.target');
 
