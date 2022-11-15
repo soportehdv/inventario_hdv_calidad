@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use App\Models\Subcategorias;
 use App\Models\Files;
 use App\Models\SiglasDocumentos;
-// use Excel;
 use App\Imports\DocumentosImport;
 use App\Exports\DocumentosExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -31,6 +30,7 @@ class DocumentosController extends Controller
     public function getDocumentos(Request $request)
     {
         // dd(Carbon::createFromFormat('Y-m-d', '1975-05-21')->toDateTimeString());
+        $Files = Files::all();
         $documentos = Documentos::join('tipos', 'tipos.id', '=', 'documentos.tipoProceso')
         ->join('subcategorias', 'subcategorias.id', '=', 'documentos.proceso')
         ->join('siglas_documentos', 'siglas_documentos.id', '=', 'documentos.tipoDocumento')
@@ -38,8 +38,8 @@ class DocumentosController extends Controller
         ->select('documentos.*', 'tipos.nombre_id as nombre_id', 'subcategorias.documento as documento', 'siglas_documentos.documento as siglas', 'estados.estado as status')
         ->get();
         return view('documento/lista', [
-
                     'documentos' => $documentos,
+                    'Files'      => $Files
 
                 ]);
     }
@@ -155,9 +155,10 @@ class DocumentosController extends Controller
     }
     public function updateDocumentos(Request $request, $documento_id)
     {
+        // dd($request->input('archivador'));
         $documentos = Documentos::where('id', $documento_id)->first();
         $validate = Validator::make($request->all(), [
-            // 'proceso'      => 'required',
+            'proceso'      => 'required',
         ]);
 
         if ($validate->fails()) {
@@ -171,8 +172,6 @@ class DocumentosController extends Controller
         $cN = $request->input('cN');
 
 
-        // $Documentos = new Documentos();
-
         $documentos->tipoProceso        = $request->input('proceso');
         $documentos->proceso            = $request->input('subproceso');
         $documentos->tipoDocumento      = $request->input('tipoDoc');
@@ -181,7 +180,7 @@ class DocumentosController extends Controller
         $documentos->versionActual      = $request->input('version');
         $documentos->fechaAprobacion    = $request->input('fecha');
         $documentos->estado             = $request->input('estado');
-        $Documentos->archivador         = $request->input('archivador');
+        $documentos->archivador         = $request->input('archivador');
         $documentos->observacion        = $request->input('observacion');
 
         if($request->file != null){

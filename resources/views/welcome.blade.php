@@ -162,6 +162,9 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="http://backups/intranethdv/documentos/documentos-de-interes/gestion-documental/formatos-historia-clinica-contingencia/" target="_blank">FORMATO HISTORIA CLINICA (CONTINGENCIA)</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link page-scroll" href="#register">BUSCAR <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -240,7 +243,6 @@
 
     </header> <!-- end of header -->
     <!-- end of header -->
-
 
     <div id="register" class="form-1">
         <div class="container">
@@ -512,9 +514,9 @@
                         "previous": "Anterior"
                     },
                     "buttons": {
-                            "copy": "Copiar",
-                            "print": "Imprimir",
-                        }
+                        "copy": "Copiar",
+                        "print": "Imprimir",
+                    }
                 }
             });
         });

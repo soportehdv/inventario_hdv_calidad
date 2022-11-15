@@ -176,12 +176,11 @@
                                     <label for="">Ubicacion fisica </label>
                                     <select id="archivador" name="archivador" class="form-control" required>
                                         <option value="">Selecciona una opción</option>
-                                        @foreach ($Files as $file)
+                                        {{-- @foreach ($Files as $file)
                                             <option value="{{ $file->id }}">
                                                 {{ $file->nombre }}
                                             </option>
-                                        @endforeach
-
+                                        @endforeach --}}
                                         @foreach ($Files as $file)
                                             <option value="{{ $file->id }}"
                                                 @if ($documentos->archivador === $file->id) selected='selected' @endif>

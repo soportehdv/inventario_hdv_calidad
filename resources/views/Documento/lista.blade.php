@@ -211,6 +211,31 @@
                                         @endif
                                     </ul>
                                 </div>
+                                @if ($documento->archivador != null)
+                                    <div class="modal-body">
+                                        <br>
+                                        <div class="card" style="width: 100%;">
+                                            <div class="card-header bg-primary text-white" align="center">
+                                                Archivo en fisico
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                @foreach ($Files as $files)
+                                                    @if ($files->id == $documento->archivador)
+                                                        <li class="list-group-item">Nombre de archivador:
+                                                            <b>{{ $files->nombre }}</b>
+                                                        </li>
+                                                        <li class="list-group-item">Ubicación del archivo:
+                                                            <b>{{ $files->ubicacion }}</b>
+                                                        </li>
+                                                        <li class="list-group-item">caracteristica del archivador:
+                                                            <b>{{ $files->caracteristicas }}</b>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
                                 @if ($documento->name != null)
                                     <div class="bajardoc">
                                         <div class="col-md-6">
