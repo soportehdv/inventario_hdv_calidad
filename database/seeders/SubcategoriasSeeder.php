@@ -51,7 +51,7 @@ class SubcategoriasSeeder extends Seeder
             'proceso_f' => 3
         ]);
         DB::table('subcategorias')->insert([
-            'documento'    => 'AUITORIA INTEGRAL',
+            'documento'    => 'AUDITORIA INTEGRAL',
             'sigla'=> 'AUD',
             'proceso_f' => 3
         ]);
@@ -116,7 +116,7 @@ class SubcategoriasSeeder extends Seeder
             'proceso_f' => 2
         ]);
         DB::table('subcategorias')->insert([
-            'documento'    => 'VIGILANCIA EN SALUD PUBLICA Y EGURIDAD EL PACIENTE',
+            'documento'    => 'VIGILANCIA EN SALUD PUBLICA Y SEGURIDAD DEL PACIENTE',
             'sigla'=> 'EPI',
             'proceso_f' => 2
         ]);

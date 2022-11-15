@@ -67,5 +67,17 @@ class SiglasDocumentoSeeder extends Seeder
             'documento'    => 'FORMATOS',
             'sigla'=> 'FR',
         ]);
+        DB::table('siglas_documentos')->insert([
+            'documento'    => 'ANEXOS',
+            'sigla'=> 'ANEXO',
+        ]);
+        DB::table('siglas_documentos')->insert([
+            'documento'    => 'RESOLUCION',
+            'sigla'=> 'RES',
+        ]);
+        DB::table('siglas_documentos')->insert([
+            'documento'    => 'RUTA',
+            'sigla'=> 'RUTA',
+        ]);
     }
 }

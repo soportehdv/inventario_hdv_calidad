@@ -1,10 +1,10 @@
 @extends('adminlte::page')
-@section('title', 'Productos')
+@section('title', 'Crear Documento')
 
 @section('content_header')
     <div class="card" style="height:4em;">
         <div class="card-header">
-            <h2>Crear nuevo documento</h2>
+            <h2>Crear Documento</h2>
         </div>
     </div>
 @endsection
@@ -113,7 +113,7 @@
                                         <div class="col-md-4">
                                             <label for="">Estado </label>
                                             <select id="estado" name="estado" class="form-control" required>
-                                                <option value="">Selecciona una opción</option>
+                                                <option value="">Selecciona</option>
                                                 @foreach ($estado as $est)
                                                     <option value="{{ $est->id }}">
                                                         {{ $est->estado }}
@@ -124,15 +124,34 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 center_margin">
+                                    <label for="">Ubicacion fisica </label>
+                                    <select id="archivador" name="archivador" class="form-control" required>
+                                        <option value="">Selecciona una opción</option>
+                                        @foreach ($Files as $file)
+                                            <option value="{{ $file->id }}">
+                                                {{ $file->nombre }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-12 center_margin">
                                     <label for="">Observación</label>
                                     <textarea type="text" class="form-control" name="observacion" id="observacion" value=""></textarea>
                                 </div>
                                 <div class="col-sm-12 center_margin">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Archivos </label>
-                                        <input type="file" class="form-control" name="file" multiple required>
+                                        <label for="exampleInputEmail1">Archivos (PDF)</label>
+                                        <input type="file" class="form-control" name="file" required>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-12 center_margin">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Archivos (EDITABLES)</label>
+                                        <input type="file" class="form-control" name="file_edit">
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-12 center_margin">
                                     <input class="btn btn-success float-right" type="submit" value="Ingresar" />
                                     <a class="btn btn-danger float-left" href="{{ URL::previous() }}">Atras</a>
@@ -194,7 +213,7 @@
             for (let i in data.lista) {
                 var opciones = data.lista[i].sigla;
             }
-            $('#cT').val(opciones);
+            $('#cD').val(opciones);
         }).catch(error => console.error(error));
     });
     $(document).on('change', '#tipoDoc', (e) => {
@@ -217,7 +236,7 @@
                 // var opciones = data.lista[i].id;
 
             }
-            $('#cD').val(opciones);
+            $('#cT').val(opciones);
             // console.log(opciones);
         }).catch(error => console.error(error));
     });

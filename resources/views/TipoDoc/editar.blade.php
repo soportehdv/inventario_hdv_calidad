@@ -1,10 +1,10 @@
 @extends('adminlte::page')
-@section('title', 'Productos')
+@section('title', 'Modificar Tipo de Documento')
 
 @section('content_header')
     <div class="card" style="height:4em;">
         <div class="card-header">
-            <h2>Modificar tipo de documento</h2>
+            <h2>Modificar Tipo de Documento</h2>
         </div>
     </div>
 @endsection
@@ -30,7 +30,7 @@
         <div class="col-sm-7 center_margin">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('TipoDocumentos.create') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('TipoDocumentos.update', $siglasDocumentos->id)}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <div class="row">

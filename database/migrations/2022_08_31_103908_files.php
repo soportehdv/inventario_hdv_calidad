@@ -14,17 +14,11 @@ class Files extends Migration
     public function up()
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->increments('id')->comment('llave foranea autoincremento');
-            $table->string('nombre')->comment('nombre archivo');
-            $table->string('ruta')->comment('ruta del archivo');
-            $table->string('mime')->comment('tipo archivo');
-            $table->string('size')->comment('tamaño archivo');
-
+            $table->increments('id');
+            $table->string('nombre');
+            $table->string('ubicacion');
+            $table->string('caracteristicas');
             $table->timestamps();
-
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_spanish_ci';
         });
     }
 

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SubcategoriasSeeder::class,
             ResponsablesSeeder::class,
             SiglasDocumentoSeeder::class,
+            BlogSeeder::class,
 
           ]);
 

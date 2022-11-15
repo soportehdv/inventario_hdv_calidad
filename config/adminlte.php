@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Inventario</b>-Lavanderia',
+    'logo' => '<b>Repositorio</b>-Calidad',
     'logo_img' => 'vendor/adminlte/dist/img/logoHDV.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -209,9 +209,9 @@ return [
     |
     */
 
-    'enabled_laravel_mix' => false,
-    'laravel_mix_css_path' => 'css/app.css',
-    'laravel_mix_js_path' => 'js/app.js',
+    'enabled_laravel_mix'   => false,
+    'laravel_mix_css_path'  => 'css/app.css',
+    'laravel_mix_js_path'   => 'js/app.js',
 
     /*
     |--------------------------------------------------------------------------
@@ -227,142 +227,68 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'text'      => 'search',
+            'search'    => false,
+            'topnav'    => false,
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'      => 'blog',
+            'url'       => 'admin/blog',
+            'can'       => 'manage-blog',
         ],
-        ['header' => 'Menú'],
+        ['header'       => 'Menú'],
         [
-            'text'        => 'Inicio',
-            'url'         => 'targets/target',
-            'icon'        => 'fa fa-fw fa-home',
-            'role'        => 'admin'
-        ],
-        [
-            'text'        => 'Usuarios',
-            'url'         => 'user/list',
-            'icon'        => 'far fa-fw fa-user',
-            'role'        => 'admin'
+            'text'      => 'Usuarios',
+            'url'       => 'user/list',
+            'icon'      => 'far fa-fw fa-user',
+            'role'      => 'admin'
         ],
         [
-            'text' => 'Listado maestro',
-            'url'  => 'documentos/lista',
-            'icon' => 'fas fa-fw fa-share',
-            'role'        => 'admin'
+            'text'      => 'Listado maestro',
+            'url'       => 'documentos/lista',
+            'icon'      => 'fas fa-fw fa-share',
+            'role'      => 'admin'
 
         ],
         [
-            'text'    => 'Codigos',
-            'icon'    => 'fas fa-fw fa-chalkboard-teacher',
-            'role'        => 'admin',
-            'submenu' => [
+            'text'      => 'Archivador',
+            'url'       => 'archivador/lista',
+            'icon'      => 'fas fa-fw fa-wallet',
+            'role'      => 'admin'
+
+        ],
+        [
+            'text'      => 'Codigos',
+            'icon'      => 'fas fa-fw fa-chalkboard-teacher',
+            'role'      => 'admin',
+            'submenu'   => [
                 [
                     'text' => 'Tipo de documentos',
                     'url'  => 'TipoDoc/lista',
+                    'role' => 'admin',
+
+                ],
+                [
+                    'text' => 'Subprocesos',
+                    'url'  => 'ProcesoE/lista',
                     'role'        => 'admin',
 
                 ],
                 [
-                    'text' => 'Procesos estrategicos',
-                    'url'  => 'ubicacion/lista',
-                    'role'        => 'admin',
-
-                ],
-                [
-                    'text' => 'Procesos misionales',
-                    'url'  => 'ubicacion/lista',
-                    'role'        => 'admin',
-
-                ],
-                [
-                    'text' => 'Procesos de apoyo',
-                    'url'  => 'ubicacion/lista',
-                    'role'        => 'admin',
-
-                ],
-                [
-                    'text' => 'Procesos de evaluación y control',
-                    'url'  => 'ubicacion/lista',
-                    'role'        => 'admin',
+                    'text' => 'Procesos',
+                    'url'  => 'Proceso/lista',
+                    'role' => 'admin',
 
                 ],
             ],
         ],
 
-        // [
-        //     'text' => 'Devolución de productos',
-        //     'url'  => 'devolucion/list',
-        //     'icon' => 'fas fa-fw fa-share fa-flip-horizontal',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Pedidos',
-        //     'url'  => 'clientes/list',
-        //     'icon' => 'fas fa-fw fa-chalkboard-teacher',
-        //     'role'        => 'servicios'
-
-        // ],
-        // [
-        //     'text' => 'Proveedores',
-        //     'url'  => 'proveedor/list',
-        //     'icon' => 'fas fa-fw fa-truck',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Ubicaciones',
-        //     'url'  => 'ubicacion/lista',
-        //     'icon' => 'fas fa-fw fa-map-marker-alt',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text'    => 'Stock',
-        //     'url'     => 'stock/list',
-        //     'icon'    => 'fas fa-fw fa-warehouse',
-        //     'role'        => 'admin',
-
-        // ],
-
-        // [
-        //     'text' => 'Entrega',
-        //     'url'  => 'ventas/todas',
-        //     'icon' => 'fas fa-fw fa-dolly',
-        //     'role' => 'admin'
-        // ],
-        // [
-        //     'text' => 'historial de lavado',
-        //     'url'  => 'lavado/todas',
-        //     'icon' => 'fas fa-fw fa-hospital ',
-        //     'role' => 'admin'
-        // ],
-        // [
-        //     'text' => 'Archivos',
-        //     'url'  => 'archivos/lista',
-        //     'icon' => 'fas fa-fw fa-lock',
-        //     'role'        => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Nombres precios',
-        //     'url'  => 'nombres/lista',
-        //     'icon' => 'fas fa-fw fa-lock',
-        //     'role' => 'admin'
-
-        // ],
-        // [
-        //     'text' => 'Fracciones',
-        //     'url'  => 'fracciones/lista',
-        //     'icon' => 'fas fa-fw fa-lock',
-        //     'role' => 'admin'
-
-        // ],
+        [
+            'text'      => 'Blog',
+            'url'       => 'blog/editar',
+            'icon'      => 'fas fa-fw fa-lock',
+            'role'      => 'admin'
+        ],
 
 
 

@@ -9,9 +9,10 @@ use App\Models\Documentos;
 use App\Models\Responsables;
 use Illuminate\Http\Request;
 use App\Models\Subcategorias;
+use App\Models\Files;
 use App\Models\SiglasDocumentos;
-// use Excel;
 use App\Imports\DocumentosImport;
+use App\Exports\DocumentosExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,6 +30,7 @@ class DocumentosController extends Controller
     public function getDocumentos(Request $request)
     {
         // dd(Carbon::createFromFormat('Y-m-d', '1975-05-21')->toDateTimeString());
+        $Files = Files::all();
         $documentos = Documentos::join('tipos', 'tipos.id', '=', 'documentos.tipoProceso')
         ->join('subcategorias', 'subcategorias.id', '=', 'documentos.proceso')
         ->join('siglas_documentos', 'siglas_documentos.id', '=', 'documentos.tipoDocumento')
@@ -36,8 +38,8 @@ class DocumentosController extends Controller
         ->select('documentos.*', 'tipos.nombre_id as nombre_id', 'subcategorias.documento as documento', 'siglas_documentos.documento as siglas', 'estados.estado as status')
         ->get();
         return view('documento/lista', [
-
                     'documentos' => $documentos,
+                    'Files'      => $Files
 
                 ]);
     }
@@ -49,6 +51,7 @@ class DocumentosController extends Controller
         $siglasDocumentos = SiglasDocumentos::all();
         $subcategorias = Subcategorias::all();
         $documentos = Documentos::all();
+        $Files = Files::all();
 
         return view('Documento/create', [
             'estado'            => $estado,
@@ -57,6 +60,7 @@ class DocumentosController extends Controller
             'siglasDocumentos'  => $siglasDocumentos,
             'subcategorias'     => $subcategorias,
             'documentos'        => $documentos,
+            'Files'             => $Files,
         ]);
     }
 
@@ -91,6 +95,7 @@ class DocumentosController extends Controller
         $Documentos->versionActual      = $request->input('version');
         $Documentos->fechaAprobacion    = $request->input('fecha');
         $Documentos->estado             = $request->input('estado');
+        $Documentos->archivador         = $request->input('archivador');
         $Documentos->observacion        = $request->input('observacion');
 
         if($request->file != null){
@@ -105,14 +110,26 @@ class DocumentosController extends Controller
             /*primero muevo el archivo antes de generar un registro en la bd por si se presenta fallos de permisos en la subida, no me genere
             registros basura en la bd*/
             $request->file->move( public_path('files/biblioteca'), $Documentos->ruta);
-        }else{
-            dd('no hay archivos');
         }
+
+        if($request->file_edit != null){
+
+            // $archivo = new Files();
+            $Documentos->name_edit     = $request->file_edit->getClientOriginalName();
+            $Documentos->extension_edit  = $request->file_edit->getClientOriginalExtension();
+            $Documentos->ruta_edit       = str_replace(" ","_",date('Y-m-d').'_'.$Documentos->name_edit);
+            $tipo_edit                   = explode('/', $request->file_edit->getClientMimeType() );
+            $Documentos->size_edit       = number_format($request->file_edit->getSize()/1024,2,',','.');
+            /*primero muevo el archivo antes de generar un registro en la bd por si se presenta fallos de permisos en la subida, no me genere
+            registros basura en la bd*/
+            $request->file_edit->move( public_path('files/biblioteca'), $Documentos->ruta_edit);
+        }
+
 
         $Documentos->save();
 
 
-        $request->session()->flash('alert-success', 'Producto registrado con exito!');
+        $request->session()->flash('alert-success', 'Documento registrado con exito!');
 
         return redirect()->route('documentos.lista');
     }
@@ -123,6 +140,7 @@ class DocumentosController extends Controller
         $responsables = Responsables::all();
         $siglasDocumentos = SiglasDocumentos::all();
         $subcategorias = Subcategorias::all();
+        $Files = Files::all();
         $documentos = Documentos::where('id', $id)->first();
 
         return view('Documento/editar', [
@@ -132,13 +150,15 @@ class DocumentosController extends Controller
             'siglasDocumentos'  => $siglasDocumentos,
             'subcategorias'     => $subcategorias,
             'documentos'        => $documentos,
+            'Files'             => $Files,
         ]);
     }
     public function updateDocumentos(Request $request, $documento_id)
     {
+        // dd($request->input('archivador'));
         $documentos = Documentos::where('id', $documento_id)->first();
         $validate = Validator::make($request->all(), [
-            // 'proceso'      => 'required',
+            'proceso'      => 'required',
         ]);
 
         if ($validate->fails()) {
@@ -152,8 +172,6 @@ class DocumentosController extends Controller
         $cN = $request->input('cN');
 
 
-        // $Documentos = new Documentos();
-
         $documentos->tipoProceso        = $request->input('proceso');
         $documentos->proceso            = $request->input('subproceso');
         $documentos->tipoDocumento      = $request->input('tipoDoc');
@@ -162,6 +180,7 @@ class DocumentosController extends Controller
         $documentos->versionActual      = $request->input('version');
         $documentos->fechaAprobacion    = $request->input('fecha');
         $documentos->estado             = $request->input('estado');
+        $documentos->archivador         = $request->input('archivador');
         $documentos->observacion        = $request->input('observacion');
 
         if($request->file != null){
@@ -180,7 +199,7 @@ class DocumentosController extends Controller
 
         $documentos->save();
 
-        $request->session()->flash('alert-success', 'Ingreso actualizado con exito!');
+        $request->session()->flash('alert-success', 'Documento actualizado con exito!');
 
         return redirect()->route('documentos.lista');
     }
@@ -204,26 +223,6 @@ class DocumentosController extends Controller
         }
 
     }
-
-    // public function subcategorias2(Request $request){
-    //     if(isset($request->texto)){
-    //         $subcategorias = Subcategorias::whereProceso_f($request->texto)->get();
-    //         return response()->json(
-    //             [
-    //                 'lista' => $subcategorias,
-    //                 'success' => true
-    //             ]
-    //             );
-    //     }else{
-    //         return response()->json(
-    //             [
-    //                 'success' => false
-    //             ]
-    //             );
-
-    //     }
-
-    // }
 
     public function busqueda(Request $request){
         if(isset($request->texto)){
@@ -287,6 +286,16 @@ class DocumentosController extends Controller
 
     }
 
+    public function exportar(Request $request){
+        // dd($request->all());
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+        ob_end_clean();
+        ob_start();
+
+        return Excel::download( new DocumentosExport($fecha_ini, $fecha_fin), 'listado.xls');
+    }
+
     public function delete($id){
         $documentos = Documentos::find($id);
         unlink(public_path().'/'.'files/biblioteca'.'/'.$documentos->ruta);
@@ -300,6 +309,12 @@ class DocumentosController extends Controller
         $documentos->save();
 
         return back()->with('status','¡Archivo eliminado exitosamente!');
+    }
+
+    public function download($id){
+        $documentos = Documentos::find($id);
+        $pathtoFile = public_path().'/'.'files/biblioteca'.'/'.$documentos->ruta;
+        return response()->download($pathtoFile);
     }
 
 

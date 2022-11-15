@@ -21,14 +21,22 @@ class Documentos extends Model
         'versionActual',
         'fechaAprobacion',
         'estado',
+        'archivador',
         'observacion',
 
-        // files
+        // files pdf
         'extension',
         'name',
         'ruta',
         'mime',
         'size',
+
+        // files editor
+        'extension_edit',
+        'name_edit',
+        'ruta_edit',
+        'size_edit',
+
 
     ];
 

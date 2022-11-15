@@ -24,6 +24,9 @@ class EstadoSeeder extends Seeder
         DB::table('estados')->insert([
             'estado' => 'ESCANEADO'
         ]);
+        DB::table('estados')->insert([
+            'estado' => 'SIN DEFINIR'
+        ]);
 
     }
 }
