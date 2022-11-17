@@ -162,7 +162,9 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://backups/intranethdv/documentos/documentos-de-interes/gestion-documental/formatos-historia-clinica-contingencia/" target="_blank">FORMATO HISTORIA CLINICA (CONTINGENCIA)</a>
+                    <a class="nav-link"
+                        href="http://backups/intranethdv/documentos/documentos-de-interes/gestion-documental/formatos-historia-clinica-contingencia/"
+                        target="_blank">FORMATO HISTORIA CLINICA (CONTINGENCIA)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#register">BUSCAR <span class="sr-only">(current)</span></a>
@@ -277,23 +279,23 @@
                     </thead>
                     <tbody>
                         @foreach ($documentos as $documento)
-                            <tr>
-                                <td>{{ $documento->nombre_id }}</td>
-                                <td>{{ $documento->documento }}</td>
-                                <td>{{ $documento->siglas }}</td>
-                                <td>{{ $documento->codigo }}</td>
-                                <td>{{ $documento->nombre }}</td>
-                                <td>{{ $documento->versionActual }}</td>
-                                <td>{{ $documento->status }}</td>
-                                <td>
-                                    <a data-toggle="modal" data-target="#modal-show-{{ $documento->id }}"
-                                        class="btn btn-warning btn-sm mb-2">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                </td>
-
-
-                            </tr>
+                            @if ($documento->estado != 2)
+                                <tr>
+                                    <td>{{ $documento->nombre_id }}</td>
+                                    <td>{{ $documento->documento }}</td>
+                                    <td>{{ $documento->siglas }}</td>
+                                    <td>{{ $documento->codigo }}</td>
+                                    <td>{{ $documento->nombre }}</td>
+                                    <td>{{ $documento->versionActual }}</td>
+                                    <td>{{ $documento->status }}</td>
+                                    <td>
+                                        <a data-toggle="modal" data-target="#modal-show-{{ $documento->id }}"
+                                            class="btn btn-warning btn-sm mb-2">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endif
                             {{-- modal show --}}
                             <div class="modal fade" id="modal-show-{{ $documento->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
