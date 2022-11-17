@@ -141,7 +141,7 @@
                                 <div class="col-sm-12 center_margin">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Archivos (PDF)</label>
-                                        <input type="file" class="form-control" name="file" required>
+                                        <input type="file" class="form-control" name="file">
                                     </div>
                                 </div>
 
