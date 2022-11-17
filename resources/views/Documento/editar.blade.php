@@ -199,26 +199,24 @@
                                 <div class="col-sm-12 center_margin">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Archivos (PDF) </label>
-                                        <input type="file" class="form-control" name="file" value=""
-                                            multiple>
+                                        <input type="file" class="form-control" name="file">
                                         <br>
                                         <label for="exampleInputEmail1">Archivos (EDITABLES) </label>
-                                        <input type="file" class="form-control" name="file_edit" value=""
-                                            multiple>
+                                        <input type="file" class="form-control" name="file_edit">
                                         <br>
 
-                                        @if ($documentos->ruta != null)
-                                            <table style="font-size: 12px;"
-                                                class="table table-striped table-bordered shadow-lg mt-4 display compact">
-                                                <thead class="bg-primary text-white">
-                                                    <tr>
-                                                        <th>Nombre</th>
-                                                        <th style="width: 10%">Extensión</th>
-                                                        <th style="width: 15%">peso</th>
-                                                        <th style="width: 16%">ACCION</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                        <table style="font-size: 12px;"
+                                            class="table table-striped table-bordered shadow-lg mt-4 display compact">
+                                            <thead class="bg-primary text-white">
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th style="width: 10%">Extensión</th>
+                                                    <th style="width: 15%">peso</th>
+                                                    <th style="width: 16%">ACCION</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if ($documentos->ruta != null)
                                                     <tr>
                                                         <td>{{ $documentos->name }}</td>
                                                         <td>{{ $documentos->extension }}</td>
@@ -238,10 +236,10 @@
                                                                 class="btn btn-warning btn-sm mb-2">
                                                                 <i class="fa fa-eye"></i>
                                                             </a>
-
                                                         </td>
                                                     </tr>
-                                                    @if ($documentos->ruta_edit != null)
+                                                @endif
+                                                @if ($documentos->ruta_edit != null)
                                                     <tr>
                                                         <td>{{ $documentos->name_edit }}</td>
                                                         <td>{{ $documentos->extension_edit }}</td>
@@ -251,23 +249,21 @@
                                                                 class="btn btn-danger btn-sm mb-2">
                                                                 <i class="fas fa-trash" style="color: white"></i>
                                                             </a>
-                                                            <a
-                                                                href="{{ asset('files/biblioteca/' . $documentos->ruta_edit) }}"
+                                                            <a href="{{ asset('files/biblioteca/' . $documentos->ruta_edit) }}"
                                                                 class="btn btn-primary btn-sm mb-2">
                                                                 <i class="fa fa-download"></i>
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    @else
+                                                @else
                                                     <tr>
                                                         <td>
                                                             No se ha subido archivo editable..!
                                                         </td>
                                                     </tr>
-                                                    @endif
-                                                </tbody>
-                                            </table>
-                                        @endif
+                                                @endif
+                                            </tbody>
+                                        </table>
 
                                         {{-- modal eliminar --}}
                                         <div class="modal fade" id="modal-delete-{{ $documentos->id }}" role="dialog">

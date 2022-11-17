@@ -236,8 +236,8 @@
                                         </div>
                                     </div>
                                 @endif
-                                @if ($documento->name != null)
-                                    <div class="bajardoc">
+                                <div class="bajardoc">
+                                    @if ($documento->name != null)
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-3">
@@ -265,85 +265,68 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    @else
                                         <div class="col-md-6">
-                                            @if ($documento->name_edit != null && $documento->extension_edit == 'docx')
-                                                <div class="row">
-                                                    <div class="col-md-3">
+                                            <br><br>
+                                            <h6 align="center">Sin PDF </h6>
+                                        </div>
+                                    @endif
+                                    @if ($documento->name_edit != null)
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
+                                                        title="{{ $documento->nombre }}." target="blank">
+                                                        <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_337932.png"
+                                                            alt="{{ $documento->nombre }}."
+                                                            title="{{ $documento->nombre }}." width="100"
+                                                            height="100" class="mimethumb img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
                                                         <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
-                                                            title="{{ $documento->nombre }}." target="blank">
-                                                            <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_337932.png"
-                                                                alt="{{ $documento->nombre }}."
-                                                                title="{{ $documento->nombre }}." width="100"
-                                                                height="100" class="mimethumb img-fluid">
-                                                        </a>
+                                                            title="{{ $documento->nombre }}."
+                                                            target="blank">{{ $documento->nombre }}.</a>
                                                     </div>
-                                                    <div class="col-md-8">
-                                                        <div class="row">
-                                                            <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
-                                                                title="{{ $documento->nombre }}."
-                                                                target="blank">{{ $documento->nombre }}.</a>
-                                                        </div>
-                                                        <div class="row">
-                                                            <a class="descarga"
-                                                                href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size_edit }}
-                                                                KB, Descargar</a>
-                                                        </div>
+                                                    <div class="row">
+                                                        <a class="descarga"
+                                                            href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size_edit }}
+                                                            KB, Descargar</a>
                                                     </div>
                                                 </div>
-                                            @elseif($documento->name_edit != null)
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
-                                                            title="{{ $documento->nombre }}." target="blank">
-                                                            <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_337958.png"
-                                                                alt="{{ $documento->nombre }}."
-                                                                title="{{ $documento->nombre }}." width="100"
-                                                                height="100" class="mimethumb img-fluid">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="row">
-                                                            <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
-                                                                title="{{ $documento->nombre }}."
-                                                                target="blank">{{ $documento->nombre }}.</a>
-                                                        </div>
-                                                        <div class="row">
-                                                            <a class="descarga"
-                                                                href="{{ asset('documentos/download/' . $documento->id) }}">{{ $documento->size_edit }}
-                                                                KB, Descargar</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="col-md-6">
+                                            <br><br>
+                                            <h6 align="center">Sin archivo </h6>
+                                        </div>
+                                    @endif
+                                </div>
+                                <h5 align="center"><b>Previsualización</b></h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div align="center">
+                                            @if ($documento->mime == 'image')
+                                                <img src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                    height="200px" width="300px" alt="imagenes">
+                                            @elseif ($documento->extension == 'pdf')
+                                                <embed src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
+                                                    type="application/pdf" width="100%" height="600px" />
                                             @else
                                                 <br><br>
-                                                <h6> No sé han subido archivos editables para este documento </h6>
+                                                <h6>No hay se ha podido previsualizar archivos </h6>
                                             @endif
                                         </div>
                                     </div>
-                                    <h5 align="center"><b>Previsualización</b></h5>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div align="center">
-                                                @if ($documento->mime == 'image')
-                                                    <img src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
-                                                        height="200px" width="300px" alt="imagenes">
-                                                @endif
-                                                @if ($documento->extension == 'pdf')
-                                                    <embed src="{{ asset('files/biblioteca/' . $documento->ruta) }}"
-                                                        type="application/pdf" width="100%" height="600px" />
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                @else
-                                    <br><br>
-                                    <h6> No sé han subido archivos para este documento </h6>
-                                @endif
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
+
                     </div>
                 </div>
             @endforeach
