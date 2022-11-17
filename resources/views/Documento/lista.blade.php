@@ -266,7 +266,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            @if ($documento->name_edit != null && $documento->extension_edit == 'doc')
+                                            @if ($documento->name_edit != null && $documento->extension_edit == 'docx')
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
@@ -295,7 +295,7 @@
                                                     <div class="col-md-3">
                                                         <a href="{{ asset('files/biblioteca/' . $documento->ruta_edit) }}"
                                                             title="{{ $documento->nombre }}." target="blank">
-                                                            <img src="https://www.hdv.gov.co/files/biblioteca/2022-09-27_337958.png"
+                                                            <img src="http://www.hdv.gov.co/files/biblioteca/2022-09-27_337958.png"
                                                                 alt="{{ $documento->nombre }}."
                                                                 title="{{ $documento->nombre }}." width="100"
                                                                 height="100" class="mimethumb img-fluid">

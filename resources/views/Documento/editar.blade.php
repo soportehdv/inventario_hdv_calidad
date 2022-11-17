@@ -198,19 +198,24 @@
                                 </div>
                                 <div class="col-sm-12 center_margin">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Archivos </label>
+                                        <label for="exampleInputEmail1">Archivos (PDF) </label>
                                         <input type="file" class="form-control" name="file" value=""
                                             multiple>
                                         <br>
+                                        <label for="exampleInputEmail1">Archivos (EDITABLES) </label>
+                                        <input type="file" class="form-control" name="file_edit" value=""
+                                            multiple>
+                                        <br>
+
                                         @if ($documentos->ruta != null)
                                             <table style="font-size: 12px;"
                                                 class="table table-striped table-bordered shadow-lg mt-4 display compact">
                                                 <thead class="bg-primary text-white">
                                                     <tr>
                                                         <th>Nombre</th>
-                                                        <th>Extensión</th>
-                                                        <th>peso</th>
-                                                        <th style="width: 20%">ACCION</th>
+                                                        <th style="width: 10%">Extensión</th>
+                                                        <th style="width: 15%">peso</th>
+                                                        <th style="width: 16%">ACCION</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -233,8 +238,33 @@
                                                                 class="btn btn-warning btn-sm mb-2">
                                                                 <i class="fa fa-eye"></i>
                                                             </a>
+
                                                         </td>
                                                     </tr>
+                                                    @if ($documentos->ruta_edit != null)
+                                                    <tr>
+                                                        <td>{{ $documentos->name_edit }}</td>
+                                                        <td>{{ $documentos->extension_edit }}</td>
+                                                        <td>{{ $documentos->size_edit }} Kb</td>
+                                                        <td><a data-toggle="modal"
+                                                                data-target="#modal-delete2-{{ $documentos->id }}"
+                                                                class="btn btn-danger btn-sm mb-2">
+                                                                <i class="fas fa-trash" style="color: white"></i>
+                                                            </a>
+                                                            <a
+                                                                href="{{ asset('files/biblioteca/' . $documentos->ruta_edit) }}"
+                                                                class="btn btn-primary btn-sm mb-2">
+                                                                <i class="fa fa-download"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @else
+                                                    <tr>
+                                                        <td>
+                                                            No se ha subido archivo editable..!
+                                                        </td>
+                                                    </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         @endif
@@ -244,7 +274,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Eliminar</h4>
+                                                        <h4 class="modal-title">Eliminar pdf</h4>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="close">
                                                             <span aria-hidden="true">&times;</span>
@@ -252,13 +282,41 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <p>
-                                                            ¿Esta seguro que desea eliminar el archivo:<b>
+                                                            ¿Esta seguro que desea eliminar el archivo pdf:<b>
                                                                 {{ $documentos->name }}</b>
                                                         </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         {{-- <button type="submit" class="btn btn-danger">Eliminar</button> --}}
                                                         <a href="{{ route('documentos.eliminar', $documentos->id) }}"
+                                                            class="btn btn-danger">Eliminar</a>
+                                                        <a style="color: white" class="btn btn-primary"
+                                                            data-dismiss="modal">Cerrar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- modal eliminar2 --}}
+                                        <div class="modal fade" id="modal-delete2-{{ $documentos->id }}" role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Eliminar editable</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>
+                                                            ¿Esta seguro que desea eliminar el archivo editable:<b>
+                                                                {{ $documentos->name_edit }}</b>
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        {{-- <button type="submit" class="btn btn-danger">Eliminar</button> --}}
+                                                        <a href="{{ route('documentos.eliminar2', $documentos->id) }}"
                                                             class="btn btn-danger">Eliminar</a>
                                                         <a style="color: white" class="btn btn-primary"
                                                             data-dismiss="modal">Cerrar</a>
