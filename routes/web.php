@@ -65,6 +65,7 @@ Route::get('documentos/lista', [App\Http\Controllers\DocumentosController::class
 Route::post('documentos/importar', [App\Http\Controllers\DocumentosController::class, 'importar'])->name('documentos.importar');
 Route::post('documentos/exportar', [App\Http\Controllers\DocumentosController::class, 'exportar'])->name('documentos.exportar');
 Route::get('documentos/eliminar/{id}', [App\Http\Controllers\DocumentosController::class, 'delete'])->name('documentos.eliminar');
+Route::get('documentos/eliminar2/{id}', [App\Http\Controllers\DocumentosController::class, 'delete2'])->name('documentos.eliminar2');
 Route::get('documentos/download/{id}', [App\Http\Controllers\DocumentosController::class, 'download'])->name('documentos.download');
 
 // subcategorias

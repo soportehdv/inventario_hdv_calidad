@@ -197,6 +197,19 @@ class DocumentosController extends Controller
             $request->file->move( public_path('files/biblioteca'), $documentos->ruta);
         }
 
+        if($request->file_edit != null){
+
+            // $archivo = new Files();
+            $documentos->name_edit     = $request->file_edit->getClientOriginalName();
+            $documentos->extension_edit  = $request->file_edit->getClientOriginalExtension();
+            $documentos->ruta_edit       = str_replace(" ","_",date('Y-m-d').'_'.$documentos->name_edit);
+            $tipo_edit                   = explode('/', $request->file_edit->getClientMimeType() );
+            $documentos->size_edit       = number_format($request->file_edit->getSize()/1024,2,',','.');
+            /*primero muevo el archivo antes de generar un registro en la bd por si se presenta fallos de permisos en la subida, no me genere
+            registros basura en la bd*/
+            $request->file_edit->move( public_path('files/biblioteca'), $documentos->ruta_edit);
+        }
+
         $documentos->save();
 
         $request->session()->flash('alert-success', 'Documento actualizado con exito!');
@@ -305,6 +318,20 @@ class DocumentosController extends Controller
         $documentos->ruta = "";
         $documentos->mime = "";
         $documentos->size = "";
+
+        $documentos->save();
+
+        return back()->with('status','¡Archivo eliminado exitosamente!');
+    }
+
+    public function delete2($id){
+        $documentos = Documentos::find($id);
+        unlink(public_path().'/'.'files/biblioteca'.'/'.$documentos->ruta_edit);
+        // $documentos->delete();
+        $documentos->name_edit = "";
+        $documentos->extension_edit = "";
+        $documentos->ruta_edit = "";
+        $documentos->size_edit = "";
 
         $documentos->save();
 
