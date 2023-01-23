@@ -24,7 +24,7 @@ class Documentos extends Migration
             $table->date('fechaAprobacion');
             $table->integer('estado');
             $table->integer('archivador')->nullable();
-            $table->text('observacion');
+            $table->text('observacion')->nullable();
             $table->timestamps();
 
             // files pdf
