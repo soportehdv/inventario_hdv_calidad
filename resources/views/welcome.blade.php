@@ -202,8 +202,12 @@
                         {{-- <div class="countdown">
                             <span id="clock"></span>
                         </div> --}}
-                        <h5>{{ $blog->titulo }}</h5>
-                        <h1>{{ $blog->subtitulo1 }}</h1>
+                        <br>
+                        <h5 style="font-size:50px;line-height: normal;">{{ $blog->titulo }}</h5>
+                        <br>
+                        <br>
+                        <h1 style="font-size:37px;line-height : 40px;">{{ $blog->subtitulo1 }}</h1>
+                        <br>
                         <p class="p-large">{{ $blog->subtitulo2 }}</p>
                         <a class="btn-solid-lg page-scroll" href="#register">{{ $blog->tBoton }}</a>
                         {{-- <a class="btn-outline-lg page-scroll" href="#instructor">DISCOVER</a> --}}
