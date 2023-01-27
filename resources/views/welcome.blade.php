@@ -164,7 +164,12 @@
                 <li class="nav-item">
                     <a class="nav-link"
                         href="http://backups/intranethdv/documentos/documentos-de-interes/gestion-documental/formatos-historia-clinica-contingencia/"
-                        target="_blank">FORMATO HISTORIA CLINICA (CONTINGENCIA)</a>
+                        target="_blank">HISTORIA CLINICA (CONTINGENCIA)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                        href="http://backups/intranethdv/documentos/documentos-de-interes/servicio-farmaceutico/gases-medicinales/"
+                        target="_blank">GASES MEDICINALES</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#register">BUSCAR <span class="sr-only">(current)</span></a>
