@@ -125,6 +125,11 @@
             text-decoration: none;
             transition: all 0.2s;
         }
+        @media (min-width: 1357px) {
+            .outer-container {
+                bottom: 0px;
+         }
+}
     </style>
 </head>
 
@@ -161,11 +166,38 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      OTROS DOCUMENTOS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"  target="_blank"  href="">DOCUMENTOS INVIMA</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item"  target="_blank"  href="">GUÍAS DE PRÁCTICA CLÍNICA  ADOPTADAS</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item"  target="_blank"  href="http://backups/intranethdv/documentos/documentos-de-interes/gestion-documental/formatos-historia-clinica-contingencia/">HISTORIA CLINICA (CONTINGENCIA)</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="">IMAGEN CORPORATIVA </a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="http://backups/intranethdv/modelo-de-documentos/">Modelo de documentos</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="http://backups/intranethdv/paciente-version-2/">Paquetes intrucionales de seguridad del paciente</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="">RUTAS DE ATENCIÓN </a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="">SARLAFT Y SICOF</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="">SISTEMA DE GESTIÓN DE CALIDAD / CARPETA NORMATIVIDAD</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank" href="">TABLAS DE RETENCIÓN DOCUMENTAL</a>
+
+                    </div>
+                  </li>
+                {{--<li class="nav-item">
                     <a class="nav-link"
                         href="http://backups/intranethdv/documentos/documentos-de-interes/gestion-documental/formatos-historia-clinica-contingencia/"
                         target="_blank">HISTORIA CLINICA (CONTINGENCIA)</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="http://backups/intranethdv/documentos/documentos-de-interes/servicio-farmaceutico/gases-medicinales/"
